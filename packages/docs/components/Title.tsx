@@ -49,8 +49,8 @@ const Title: React.FC<TitleProps> = ({ children, className, delay = 0 }) => {
       viewport={{ once: true, amount: 0.5 }}
     >
       {words?.map((word, index) => (
-        <motion.span key={index} variants={wordVariant} className="mr-2 inline-block">
-          {word}
+        <motion.span key={index} variants={wordVariant} className="inline-block">
+          {word}&nbsp;
         </motion.span>
       ))}
     </motion.h1>
