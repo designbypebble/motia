@@ -22,10 +22,9 @@ export default function AgentsExplorer({ initialData }: Props) {
         </Title>
       </div>
       <div className="max-sm:hidden">
-        <Title className="text-center text-white opacity-40">Building agents that</Title>
-        <Title className="text-center text-white opacity-40">work in production is hard,</Title>
+        <Title className="text-center text-white opacity-40">Write AI Workflows Like</Title>
         <Title delay={0.5} className="text-center !font-medium text-white">
-          but not with Motia
+          Like You Write APIs
         </Title>
       </div>
 
