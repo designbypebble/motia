@@ -19,10 +19,10 @@ The following properties are specific to the Cron Step, in addition to the [comm
 
 The following examples showcase how to configure an **CRON Step**
 
-<Tabs  items={['TS', 'JS', 'Python', 'Ruby']}>
+<Tabs  items={['TS', 'JS', 'Python']}>
   <Tab value="TS">
     ```typescript
-    import { CronConfig } from 'motia'
+    import { CronConfig, Handlers } from 'motia'
 
     export const config: CronConfig = {
       type: 'cron' as const,
@@ -33,7 +33,7 @@ The following examples showcase how to configure an **CRON Step**
       flows: ['cron-example'],
     }
 
-    export const handler: StepHandler<typeof config> = async ({ emit }) => {
+    export const handler: Handlers['PeriodicJob'] = async ({ emit }) => {
       await emit({
         topic: 'cron-ticked',
         data: { message: 'Cron job executed' },
@@ -81,28 +81,5 @@ The following examples showcase how to configure an **CRON Step**
         })
 
     ```
-
-  </Tab>
-  <Tab value="Ruby">
-    ```ruby
-    def config
-      {
-        type: 'cron',
-        name: 'PeriodicJob',
-        description: 'Runs every minute and emits a timestamp',
-        cron: '0 * * * *',
-        emits: ['cron-ticked'],
-        flows: ['cron-example'],
-      }
-    end
-
-    def handler(context)
-      context.emit({
-        topic: 'cron-ticked',
-        data: { message: 'Cron job executed' },
-      })
-    end
-    ```
-
   </Tab>
 </Tabs>

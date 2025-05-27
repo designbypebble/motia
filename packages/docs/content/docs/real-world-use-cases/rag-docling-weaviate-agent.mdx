@@ -3,7 +3,7 @@ title: RAG Agent using Docling and Weaviate
 description: An LLM chat-like question-answering system with RAG (Retrieval-Augmented Generation) to provide accurate answers from PDF documents. The system leverages Docling to parse and intelligently chunk PDF documents, Weaviate as a vector database to store vectorized chunks, and OpenAI for embeddings and text generation.
 ---
 
-import { CodeFetcher } from "../../../components/CodeFetcher";
+import { CodeFetcher } from '../../../components/CodeFetcher'
 
 ## Let's build a PDF RAG Agent with:
 
@@ -23,41 +23,12 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
   <File name="process-pdfs.step.py" />
 </Folder>
 
-<Tabs
-  items={[
-    "api-process-pdfs",
-    "api-query-rag",
-    "init-weaviate",
-    "load-weaviate",
-    "process-pdfs",
-  ]}
->
-  <CodeFetcher
-    path="examples/rag-docling-weaviate-agent/steps/api-steps"
-    tab="api-process-pdfs"
-    value="api-process-pdfs"
-  />
-  <CodeFetcher
-    path="examples/rag-docling-weaviate-agent/steps/api-steps"
-    tab="api-query-rag"
-    value="api-query-rag"
-  />
-  <CodeFetcher
-    path="examples/rag-docling-weaviate-agent/steps/event-steps"
-    tab="init-weaviate"
-    value="init-weaviate"
-  />
-  <CodeFetcher
-    path="examples/rag-docling-weaviate-agent/steps/event-steps"
-    tab="load-weaviate"
-    value="load-weaviate"
-  />
-  <CodeFetcher
-    path="examples/rag-docling-weaviate-agent/steps/event-steps"
-    tab="process-pdfs"
-    value="process-pdfs"
-    fileExtension="py"
-  />
+<Tabs items={['api-process-pdfs', 'api-query-rag', 'init-weaviate', 'load-weaviate', 'process-pdfs']}>
+  <CodeFetcher path="examples/rag-docling-weaviate-agent/steps/api-steps" tab="api-process-pdfs" value="api-process-pdfs" />
+  <CodeFetcher path="examples/rag-docling-weaviate-agent/steps/api-steps" tab="api-query-rag" value="api-query-rag" />
+  <CodeFetcher path="examples/rag-docling-weaviate-agent/steps/event-steps" tab="init-weaviate" value="init-weaviate" />
+  <CodeFetcher path="examples/rag-docling-weaviate-agent/steps/event-steps" tab="load-weaviate" value="load-weaviate" />
+  <CodeFetcher path="examples/rag-docling-weaviate-agent/steps/event-steps" tab="process-pdfs" value="process-pdfs" fileExtension="py" />
 </Tabs>
 
 ## 🚀 Features
@@ -79,14 +50,12 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
 ## 🛠️ Installation
 
 1. Clone the repository:
-
    ```bash
    git clone https://github.com/MotiaDev/motia-examples
    cd examples/rag-docling-weaviate-agent
    ```
 
 2. Install dependencies:
-
    ```bash
    pnpm install
    # or
@@ -94,13 +63,11 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
    ```
 
 3. Configure environment variables:
-
    ```bash
    cp .env.example .env
    ```
 
    Update `.env` with your API keys:
-
    ```bash
    # Required
    OPENAI_API_KEY=your-openai-api-key-here
@@ -134,7 +101,6 @@ Content-Type: application/json
 ```
 
 Response:
-
 ```json
 {
   "message": "PDF processing workflow started",
@@ -155,7 +121,6 @@ Content-Type: application/json
 ```
 
 Response:
-
 ```json
 {
   "query": "Your question about the PDF content",
@@ -175,7 +140,6 @@ Response:
 ```
 
 Error Response:
-
 ```json
 {
   "error": "Failed to process RAG query",
@@ -186,19 +150,16 @@ Error Response:
 ## 🏃‍♂️ Running the Application
 
 1. Start the development server:
-
    ```bash
    pnpm dev
    ```
 
 2. Access the Motia Workbench:
-
    ```
    http://localhost:3000
    ```
 
 3. Make test requests:
-
    ```bash
    # Process PDFs
    curl --request POST \
@@ -217,10 +178,9 @@ Error Response:
       "limit": 5
    }'
    ```
-
 ## 🙏 Acknowledgments
 
 - [Motia Framework](https://motia.dev) for the event-driven workflow engine
 - [Docling](https://github.com/MotiaDev/docling) for PDF parsing and hybrid chunking
 - [Weaviate](https://www.weaviate.io/) for Vector Database
-- [OpenAI](https://platform.openai.com/) for AI analysis
+- [OpenAI](https://platform.openai.com/) for AI analysis 

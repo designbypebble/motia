@@ -3,7 +3,7 @@ title: AI Deep Research Agent
 description: A powerful research assistant that leverages the Motia Framework to perform comprehensive web research on any topic and any question.
 ---
 
-import { CodeFetcher } from "../../../components/CodeFetcher";
+import { CodeFetcher } from '../../../components/CodeFetcher'
 
 ## Let's build a finance agent that:
 
@@ -28,64 +28,16 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
   <File name="status-api.step.ts" />
 </Folder>
 
-<Tabs
-  items={[
-    "analyze-content",
-    "compile-report",
-    "extract-content",
-    "follow-up-research",
-    "generate-queries",
-    "report-api",
-    "research-api",
-    "search-web",
-    "status-api",
-  ]}
->
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="analyze-content"
-    value="analyze-content"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="compile-report"
-    value="compile-report"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="extract-content"
-    value="extract-content"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="follow-up-research"
-    value="follow-up-research"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="generate-queries"
-    value="generate-queries"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="report-api"
-    value="report-api"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="research-api"
-    value="research-api"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="search-web"
-    value="search-web"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="status-api"
-    value="status-api"
-  />
+<Tabs items={['analyze-content', 'compile-report', 'extract-content', 'follow-up-research', 'generate-queries', 'report-api', 'research-api', 'search-web', 'status-api']}>
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="analyze-content" value="analyze-content" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="compile-report" value="compile-report" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="extract-content" value="extract-content" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="follow-up-research" value="follow-up-research" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="generate-queries" value="generate-queries" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="report-api" value="report-api" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="research-api" value="research-api" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="search-web" value="search-web" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="status-api" value="status-api" />
 </Tabs>
 
 ## 🚀 Features
@@ -108,14 +60,12 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
 ## 🛠️ Installation
 
 1. Clone the repository:
-
    ```bash
    git clone https://github.com/MotiaDev/motia-examples
    cd examples/ai-deep-research-agent
    ```
 
 2. Install dependencies:
-
    ```bash
    pnpm install
    # or
@@ -123,13 +73,11 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
    ```
 
 3. Configure environment variables:
-
    ```bash
    cp .env.example .env
    ```
 
    Update `.env` with your API keys:
-
    ```bash
    # Required
    OPENAI_API_KEY=your-openai-api-key-here
@@ -143,6 +91,7 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
 ## 🏗️ Architecture
 
 ![AI Deep Research Agent](../img/ai-deep-research-agent.png)
+
 
 ## 🚦 API Endpoints
 
@@ -160,7 +109,6 @@ Content-Type: application/json
 ```
 
 Response:
-
 ```json
 {
   "message": "Research process started",
@@ -175,7 +123,6 @@ GET /research/status?requestId=unique-trace-id
 ```
 
 Response:
-
 ```json
 {
   "message": "Research status retrieved successfully",
@@ -198,7 +145,6 @@ GET /research/report?requestId=unique-trace-id
 ```
 
 Response:
-
 ```json
 {
   "message": "Research report retrieved successfully",
@@ -211,7 +157,10 @@ Response:
         "content": "Section content..."
       }
     ],
-    "keyTakeaways": ["Key takeaway 1", "Key takeaway 2"],
+    "keyTakeaways": [
+      "Key takeaway 1",
+      "Key takeaway 2"
+    ],
     "sources": [
       {
         "title": "Source Title",
@@ -231,13 +180,11 @@ Response:
 ## 🏃‍♂️ Running the Application
 
 1. Start the development server:
-
    ```bash
    pnpm dev
    ```
 
 2. Access the Motia Workbench:
-
    ```
    http://localhost:3000
    ```
@@ -253,9 +200,8 @@ Response:
       "breadth": 1
    }'
    ```
-
 ## 🙏 Acknowledgments
 
 - [Motia Framework](https://motia.dev) for the event-driven workflow engine
-- [OpenAI](https://platform.openai.com/) for AI analysis
+- [OpenAI](https://platform.openai.com/) for AI analysis 
 - [Firecrawl](https://www.firecrawl.dev/) for Web search and content extraction API

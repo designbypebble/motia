@@ -37,7 +37,7 @@ const textBlue = 'text-[#53B4FF]'
 
 export default function ManifestoPage() {
   return (
-    <div className="relative w-full bg-black">
+    <div className="relative flex w-full flex-col items-center bg-black">
       <Navbar />
       <Image src={bgManifesto} alt="Manifesto Glow" aria-hidden className="absolute top-0 right-0 max-w-full" />
       <div className="relative mx-auto w-full max-w-[1200px] pt-[160px] pb-[200px] max-md:px-[16px]">

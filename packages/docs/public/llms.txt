@@ -362,7 +362,7 @@ exports.config = {
   name: 'AddNumbers',
   subscribes: ['add-numbers'],
   emits: ['numbers-added'],
-  flows: ['calculator-flow'] // <-- Flow association
+  flows: ['calculator-flow'], // <-- Flow association
 }
 
 // ... handler definition
@@ -377,17 +377,16 @@ exports.config = {
   name: 'ValidateNumbers',
   subscribes: ['numbers-added'],
   emits: ['numbers-validated'],
-  flows: ['calculator-flow'] // <-- Same flow name connects the steps
+  flows: ['calculator-flow'], // <-- Same flow name connects the steps
 }
 
 // ... handler definition
 ```
 
 <Callout type="info">
-  💡 Best Practices:
-  - Use descriptive flow names that reflect their purpose (e.g., 'user-registration-flow', 'payment-processing-flow')
-  - A [step](/docs/concepts/steps/defining-steps) can belong to multiple flows: `flows: ['billing-flow', 'analytics-flow']`
-  - Keep flows focused on specific business processes for better organization
+  💡 Best Practices: - Use descriptive flow names that reflect their purpose (e.g., 'user-registration-flow',
+  'payment-processing-flow') - A [step](/docs/concepts/steps/defining-steps) can belong to multiple flows: `flows:
+  ['billing-flow', 'analytics-flow']` - Keep flows focused on specific business processes for better organization
 </Callout>
 
 ### Visualizing Your Flows
@@ -398,28 +397,13 @@ After you've defined your flows, you can visualize them in [Motia Workbench](/do
   <Step>
     Start your development server:
 
-    <Tabs items={['pnpm', 'yarn', 'npm', 'bun']}>
-      <Tab value='pnpm'>
-      ```bash
-      pnpm run dev
-      ```
-      </Tab>
-      <Tab value='yarn'>
-      ```bash
-      yarn run dev
-      ```
-      </Tab>
-      <Tab value='npm'>
-      ```bash
-      npm run dev
-      ```
-      </Tab>
-      <Tab value='bun'>
-      ```bash
-      bun run dev
-      ```
-      </Tab>
+    <Tabs items={['npm', 'yarn', 'pnpm', 'bun']}>
+      <Tab value="yarn">```yarn run dev ```</Tab>
+      <Tab value="npm">```npm run dev ```</Tab>
+      <Tab value="pnpm">```pnpm run dev ```</Tab>
+      <Tab value="bun">```bun run dev ```</Tab>
     </Tabs>
+
   </Step>
   <Step>
     [Open](http://localhost:3000) Motia Workbench in your browser (typically at `http://localhost:3000` or `http://127.0.0.1:3000`).
@@ -435,9 +419,8 @@ After you've defined your flows, you can visualize them in [Motia Workbench](/do
 
 Checkout the [Motia Workbench](/docs/workbench/overview) docs for more information.
 
-<Callout>
-New to Motia? Follow the **[quick start](/docs/getting-started/quick-start)** guide to get set up.
-</Callout>
+<Callout>New to Motia? Follow the **[quick start](/docs/getting-started/quick-start)** guide to get set up.</Callout>
+
 
 -   [Logging & Debugging](/docs/concepts\logging-and-debugging.md): Documentation for Logging & Debugging.
 ---
@@ -457,19 +440,19 @@ Motia provides an out of the box logging and debugging system that works across 
 
 Motia supports four standard log levels:
 
-| Log Type | Description |
-| -------- | ----------- |
+| Log Type | Description                                                                        |
+| -------- | ---------------------------------------------------------------------------------- |
 | info     | General information about step execution, flow progress, and successful operations |
-| error    | Critical issues, exceptions, failed operations, and system errors |
-| debug    | Detailed debugging information and diagnostic data for troubleshooting |
-| warn     | Potential issues, edge cases, or situations requiring attention |
+| error    | Critical issues, exceptions, failed operations, and system errors                  |
+| debug    | Detailed debugging information and diagnostic data for troubleshooting             |
+| warn     | Potential issues, edge cases, or situations requiring attention                    |
 
 ### Example Usage
 
-<Tabs items={['TS', 'JS', 'Python', 'Ruby']}>
+<Tabs items={['TS', 'JS', 'Python']}>
   <Tab value='TS'>
     ```typescript
-    export const handler: StepHandler<typeof config> = async (input, { logger }) => {
+    export const handler: Handlers['StepName'] = async (input, { logger }) => {
       // Basic logging
       logger.info('Starting process')
 
@@ -504,6 +487,7 @@ Motia supports four standard log levels:
       }
     }
     ```
+
   </Tab>
   <Tab value='JS'>
     ```javascript
@@ -542,6 +526,7 @@ Motia supports four standard log levels:
       }
     }
     ```
+
   </Tab>
   <Tab value='Python'>
     ```python
@@ -578,44 +563,6 @@ Motia supports four standard log levels:
             })
     ```
   </Tab>
-  <Tab value='Ruby'>
-    ```ruby
-    def handler(input, ctx)
-      # Basic logging
-      ctx.logger.info('Starting process')
-
-      # Logging with context
-      ctx.logger.info('Operation completed', {
-        operation_id: input.id,
-        duration: 1500
-      })
-
-      # Error handling
-      begin
-        risky_operation()
-      rescue StandardError => error
-        ctx.logger.error('Operation failed', {
-          error: error.message,
-          stack: error.backtrace.join("\n")
-        })
-      end
-
-      # Debug logging
-      ctx.logger.debug('Operation details', {
-        raw_input: input.to_h,
-        timestamp: Time.now.to_i
-      })
-
-      # Warning logging
-      if input.amount > 1000
-        ctx.logger.warn('Large operation detected', {
-          amount: input.amount,
-          threshold: 1000
-        })
-      end
-    end
-    ```
-  </Tab>
 </Tabs>
 
 ## Running and Debugging
@@ -627,35 +574,20 @@ Motia supports four standard log levels:
     1. Navigate to your Motia project root folder
     2. Start the development server:
 
-    <Tabs items={['pnpm', 'yarn', 'npm', 'bun']}>
-      <Tab value='pnpm'>
-      ```bash
-      pnpm run dev
-      ```
-      </Tab>
-      <Tab value='yarn'>
-      ```bash
-      yarn run dev
-      ```
-      </Tab>
-      <Tab value='npm'>
-      ```bash
-      npm run dev
-      ```
-      </Tab>
-      <Tab value='bun'>
-      ```bash
-      bun run dev
-      ```
-      </Tab>
+    <Tabs items={['npm', 'yarn', 'pnpm', 'bun']}>
+      <Tab value="yarn">```yarn run dev ```</Tab>
+      <Tab value="npm">```npm run dev ```</Tab>
+      <Tab value="pnpm">```pnpm run dev ```</Tab>
+      <Tab value="bun">```bun run dev ```</Tab>
     </Tabs>
 
     3. You can monitor logs in two ways:
       - Open [Motia Workbench](http://localhost:3000), select your flow, and expand the logs container
       - View logs directly in the terminal where you ran the dev command
   </Step>
+  
   <Step>
-  ### Trigger and Monitor Flows
+    ### Trigger and Monitor Flows
 
     You can trigger flows using either the CLI or an [API step](/docs/concepts/steps/api):
 
@@ -674,22 +606,23 @@ Motia supports four standard log levels:
       </Tab>
     </Tabs>
   </Step>
+  
   <Step>
-  ### Debug Using Logs
+    ### Debug Using Logs
 
-  Each log entry automatically includes:
+    Each log entry automatically includes:
 
-  - `timestamp`: When the log was generated
-  - `traceId`: Unique identifier for the flow execution
-  - `flows`: Array of flow names this step belongs to
-  - `file`: Source file generating the log
-  - `level`: Log level
-  - `msg`: Log message
+    - `timestamp`: When the log was generated
+    - `traceId`: Unique identifier for the flow execution
+    - `flows`: Array of flow names this step belongs to
+    - `file`: Source file generating the log
+    - `level`: Log level
+    - `msg`: Log message
   </Step>
+  
   <Step>
-  ### Stopping the development server
-
-  Press **Ctrl + C** (or **Cmd + C** on macOS) in your terminal. That's it!
+    ### Stopping the development server
+    Press **Ctrl + C** (or **Cmd + C** on macOS) in your terminal. That's it!
   </Step>
 </Steps>
 
@@ -702,7 +635,7 @@ Motia supports four standard log levels:
 logger.info('Payment processed', {
   paymentId: '123',
   amount: 100,
-  status: 'success'
+  status: 'success',
 })
 
 // Avoid - Harder to parse and search
@@ -712,50 +645,46 @@ logger.info(`Payment ${paymentId} processed: amount=${amount}`)
 ### Performance Monitoring
 
 ```typescript
-export const handler: StepHandler<typeof config> = async (input, { logger }) => {
+export const handler: Handlers['StepName'] = async (input, { logger }) => {
   const startTime = performance.now()
-  
+
   // Process operation
   const result = await processOperation(input)
 
   logger.info('Operation completed', {
     duration: performance.now() - startTime,
-    memoryUsage: process.memoryUsage().heapUsed
+    memoryUsage: process.memoryUsage().heapUsed,
   })
 }
 ```
 
 ### Debugging Tips
 
-{/* TODO: Add Motia Workbench filter logs guide when the feature is implemented*/}
-{/* 1. Use Motia Workbench to filter logs by:
-   - Log level
-   - Flow
-   - Time range
-   - Content search */}
-
 1. Add detailed context to error logs:
+
 ```typescript
 logger.error('Operation failed', {
   error: error.message,
   code: error.code,
   input: JSON.stringify(input),
-  stack: error.stack
+  stack: error.stack,
 })
 ```
 
 2. Use debug logs for detailed troubleshooting:
+
 ```typescript
 logger.debug('Operation details', {
   rawInput: input,
   timestamp: Date.now(),
-  state: currentState
+  state: currentState,
 })
 ```
 
 <Callout>
-Remember to stop your development server with Ctrl + C (or Cmd + C on macOS) when you're done debugging.
+  Remember to stop your development server with Ctrl + C (or Cmd + C on macOS) when you're done debugging.
 </Callout>
+
 
 -   [state-management](/docs/concepts\state-management.md): Documentation for state-management.
 ---
@@ -821,17 +750,17 @@ State data is stored as key-value pairs, namespaced under a scope string. When u
 
 ## Using State in Steps
 
-<Tabs items={['TypeScript', 'JavaScript', 'Python', 'Ruby']}>
+<Tabs items={['TypeScript', 'JavaScript', 'Python']}>
   <Tab label="TypeScript">
     ```typescript
-    import { StepHandler } from 'motia'
+    import { Handlers } from 'motia'
 
     interface BookingData {
       customer: { name: string; email: string };
       venue: { id: string; name: string };
     }
 
-    export const handler: StepHandler<typeof config> = async (input, { state, traceId }) => { // Get traceId from context
+    export const handler: Handlers['StepName'] = async (input, { state, traceId }) => { // Get traceId from context
       // Store state (using traceId as scope)
       await state.set<BookingData>(traceId, 'booking', {
         customer: input.customer,
@@ -853,9 +782,9 @@ State data is stored as key-value pairs, namespaced under a scope string. When u
 
   <Tab label="JavaScript">
     ```javascript
-    import { StepHandler } from 'motia'
+    import { Handlers } from 'motia'
 
-    export const handler = async (input, { state, traceId }) => { // Get traceId from context
+    export const handler: Handlers['StepName'] = async (input, { state, traceId }) => { // Get traceId from context
       // Store state (using traceId as scope)
       await state.set(traceId, 'booking', {
         customer: input.customer,
@@ -895,31 +824,6 @@ State data is stored as key-value pairs, namespaced under a scope string. When u
         # Clear all state (using traceId as scope)
         await ctx.state.clear(trace_id)
     ```
-
-  </Tab>
-
-  <Tab label="Ruby">
-    ```ruby
-    def handler(input, context) # context is the context object
-      trace_id = context.trace_id # Access traceId from context
-
-      # Store state (using traceId as scope)
-      context.state.set(trace_id, 'booking', {
-        customer: input.customer,
-        venue: input.venue
-      })
-
-      # Retrieve state (using traceId as scope)
-      booking = context.state.get(trace_id, 'booking')
-
-      # Delete specific state
-      context.state.delete(trace_id, 'booking')
-
-      # Clear all state (using traceId as scope)
-      context.state.clear(trace_id)
-    end
-    ```
-
   </Tab>
 </Tabs>
 
@@ -963,7 +867,7 @@ State data is stored as key-value pairs, namespaced under a scope string. When u
 
 Use dot notation to organize related state data hierarchically:
 
-<Tabs items={['TypeScript', 'JavaScript', 'Python', 'Ruby']}>
+<Tabs items={['TypeScript', 'JavaScript', 'Python']}>
   <Tab label="TypeScript">
     ```typescript
     // Good - Organized hierarchically (using traceId scope)
@@ -1008,28 +912,13 @@ Use dot notation to organize related state data hierarchically:
     ```
 
   </Tab>
-
-  <Tab label="Ruby">
-    ```ruby
-    # Good - Organized hierarchically (using traceId scope)
-    state.set(trace_id, 'booking.customer', customer_data)
-    state.set(trace_id, 'booking.venue', venue_data)
-    state.set(trace_id, 'payment.status', 'pending')
-
-    # Avoid - Flat structure
-    state.set(trace_id, 'customer', customer_data)
-    state.set(trace_id, 'venue', venue_data)
-    state.set('payment_status', 'pending')
-    ```
-
-  </Tab>
 </Tabs>
 
 ### Type Safety
 
 Define types for your state data to ensure consistency:
 
-<Tabs items={['TypeScript', 'JavaScript', 'Python', 'Ruby']}>
+<Tabs items={['TypeScript', 'JavaScript', 'Python']}>
   <Tab label="TypeScript">
     ```typescript
     interface CustomerData {
@@ -1084,40 +973,16 @@ Define types for your state data to ensure consistency:
     ```
 
   </Tab>
-
-  <Tab label="Ruby">
-    ```ruby
-    # Using Sorbet for type checking
-    class CustomerData < T::Struct
-      const :name, String
-      const :email, String
-    end
-
-    class VenueData < T::Struct
-      const :id, String
-      const :capacity, Integer
-    end
-
-    class BookingState < T::Struct
-      const :customer, CustomerData
-      const :venue, VenueData
-      const :status, T.enum([:pending, :confirmed])
-    end
-
-    booking = state.get(traceId, 'booking')
-    ```
-
-  </Tab>
 </Tabs>
 
 ### Cleanup
 
 Always clean up state when you're done with it:
 
-<Tabs items={['TypeScript', 'JavaScript', 'Python', 'Ruby']}>
+<Tabs items={['TypeScript', 'JavaScript', 'Python']}>
     <Tab label="TypeScript">
       ```typescript
-      export const handler: StepHandler<typeof config> = async (input, { state, traceId }) => {
+      export const handler: Handlers['StepName'] = async (input, { state, traceId }) => {
         try {
           await processBooking(input)
           // Clean up specific keys
@@ -1162,24 +1027,6 @@ Always clean up state when you're done with it:
               pass
       ```
     </Tab>
-
-    <Tab label="Ruby">
-      ```ruby
-      def handler(input, ctx)
-        trace_id = ctx.trace_id
-        begin
-          process_booking(input)
-          # Clean up specific keys
-          ctx.state.delete(trace_id, 'booking.customer')
-          # Or clean everything
-          ctx.state.clear(trace_id)
-        rescue => error
-          # Handle errors
-        end
-      end
-      ```
-      </Tab>
-
 </Tabs>
 
 ### Performance Considerations
@@ -1300,12 +1147,142 @@ The following properties are specific to the API Step, in addition to the [commo
         'Schema for validating the request body. For TypeScript/JavaScript steps, it uses zod schemas. For Python steps, it uses Pydantic models.',
       type: 'object',
     },
+    responseSchema: {
+      description:
+        'Mostly used for documentation, the expected output of an API endpoint. For TypeScript/JavaScript steps, it uses zod schemas. For Python steps, it uses Pydantic models or Dict Json Schema.',
+      type: 'object',
+    },
+    queryParams: {
+      description: 'Mostly for documentation, the expected query params',
+      type: 'array',
+    },
     middleware: {
       description: 'Optional middleware functions to run before the handler',
       type: 'array',
     },
   }}
 />
+
+## Defining an API Step
+
+<Tabs items={['TypeScript', 'JavaScript', 'Python']}>
+  <Tab value="TypeScript">
+    ```typescript
+    import { ApiRouteConfig, Handlers } from 'motia'
+    import { z } from 'zod'
+
+    export const config: ApiRouteConfig = {
+      type: 'api',
+      name: 'GetMessage',
+      description: 'Retrieves a generated message from OpenAI based on the Trace ID returned by the POST /openai endpoint',
+      path: '/openai/:traceId',
+      method: 'GET',
+      emits: ['call-openai'],
+      flows: ['openai'],
+      responseSchema: {
+        // When response code is 200
+        200: z.object({ message: z.string({ description: 'The message from OpenAI' }) }),
+        // When response code is 400
+        400: z.object({ message: z.string({ description: 'The error message' }) })
+      },
+      queryParams: [
+        {
+          name: 'includeProps',
+          description: 'Whether to include the properties of the message',
+        },
+      ],
+    }
+
+    export const handler: Handlers['GetMessage'] = async (req, { logger }) => {
+      logger.info('[Call OpenAI] Received callOpenAi event', req)
+
+      return {
+        status: 200,
+        body: { message: 'OpenAI response sent' },
+      }
+    }
+    ```
+
+  </Tab>
+  <Tab value="JavaScript">
+    ```typescript
+    const { z } = require('zod')
+
+    export const config = {
+      type: 'api',
+      name: 'Get Message by Trace ID',
+      description: 'Retrieves a generated message from OpenAI based on the Trace ID returned by the POST /openai endpoint',
+      path: '/openai/:traceId',
+      method: 'GET',
+      emits: ['call-openai'],
+      flows: ['openai'],
+      responseSchema: {
+        // When response code is 200
+        200: z.object({ message: z.string({ description: 'The message from OpenAI' }) }),
+        // When response code is 400
+        400: z.object({ message: z.string({ description: 'The error message' }) })
+      },
+      queryParams: [
+        {
+          name: 'includeProps',
+          description: 'Whether to include the properties of the message',
+        },
+      ],
+    }
+
+    export const handler = async (req, { logger }) => {
+      logger.info('[Call OpenAI] Received callOpenAi event', req)
+
+      return {
+        status: 200,
+        body: { message: 'OpenAI response sent' },
+      }
+    }
+    ```
+
+  </Tab>
+  <Tab value="Python">
+    ```python
+    from pydantic import BaseModel
+    
+    # Define a Pydantic model for request body validation
+    class RequestBody(BaseModel):
+        message: str
+
+    config = {
+      "type": "api",
+      "name": "Get Message by Trace ID",
+      "description": "Retrieves a generated message from OpenAI based on the Trace ID returned by the POST /openai endpoint",
+      "path": "/openai/:traceId",
+      "method": "GET",
+      "emits": ["call-openai"],
+      "flows": ["openai"],
+      "responseSchema": {
+        "200": RequestBody.model_json_schema()
+      },
+      "queryParams": [
+        {
+          "name": "includeProps",
+          "description": "Whether to include the properties of the message",
+        },
+      ],
+    }
+
+    async def handler(req, context):
+      context.logger.info("[Call OpenAI] Received callOpenAi event", {"body": req.get("body")})
+
+      return {
+        "status": 200,
+        "body": { "message": "OpenAI response sent" },
+      }
+    ```
+
+  </Tab>
+</Tabs>
+
+This should create an endpoint that can be viewed and requested from Workbench UI.
+
+![Endpoint Visualization in Workbench](../../img/endpoints.png)
 
 The following examples showcase how to configure an **API Step**
 
@@ -1467,15 +1444,15 @@ const rateLimiterMiddleware: ApiMiddleware = (() => {
 })()
 ```
 
-<Tabs items={['TypeScript', 'JavaScript', 'Python', 'Ruby']}>
+<Tabs items={['TypeScript', 'JavaScript', 'Python']}>
   <Tab value="TypeScript">
     ```typescript
-      import { ApiRouteConfig, StepHandler } from 'motia'
+      import { ApiRouteConfig, Handlers } from 'motia'
       import { z } from 'zod'
 
       export const config: ApiRouteConfig = {
         type: 'api',
-        name: 'Test state api trigger',
+        name: 'TestStateApiTrigger',
         description: 'test state',
         path: '/test-state',
         method: 'POST',
@@ -1484,7 +1461,7 @@ const rateLimiterMiddleware: ApiMiddleware = (() => {
         flows: ['test-state'],
       }
 
-      export const handler: StepHandler<typeof config> = async (req, { logger, emit }) => {
+      export const handler: Handlers['TestStateApiTrigger'] = async (req, { logger, emit }) => {
         logger.info('[Test State] Received request', req)
 
         await emit({
@@ -1642,34 +1619,6 @@ const rateLimiterMiddleware: ApiMiddleware = (() => {
     ```
 
   </Tab>
-  <Tab value="Ruby">
-    ```ruby
-    def config
-      {
-        type: 'api',
-        name: 'Test state api trigger',
-        description: 'test state',
-        path: '/test-state',
-        method: 'POST',
-        emits: ['test-state'],
-        flows: ['test-state']
-      }
-    end
-
-    def handler(req, ctx)
-      ctx.emit({
-        "topic" => "test-state",
-        "data" => req.body
-      })
-
-      {
-        "status" => 200,
-        "body" => { "message" => "Success" }
-      }
-    end
-    ```
-
-  </Tab>
 </Tabs>
 
 
@@ -1695,10 +1644,10 @@ The following properties are specific to the Cron Step, in addition to the [comm
 
 The following examples showcase how to configure an **CRON Step**
 
-<Tabs  items={['TS', 'JS', 'Python', 'Ruby']}>
+<Tabs  items={['TS', 'JS', 'Python']}>
   <Tab value="TS">
     ```typescript
-    import { CronConfig } from 'motia'
+    import { CronConfig, Handlers } from 'motia'
 
     export const config: CronConfig = {
       type: 'cron' as const,
@@ -1709,7 +1658,7 @@ The following examples showcase how to configure an **CRON Step**
       flows: ['cron-example'],
     }
 
-    export const handler: StepHandler<typeof config> = async ({ emit }) => {
+    export const handler: Handlers['PeriodicJob'] = async ({ emit }) => {
       await emit({
         topic: 'cron-ticked',
         data: { message: 'Cron job executed' },
@@ -1757,29 +1706,6 @@ The following examples showcase how to configure an **CRON Step**
         })
 
     ```
-
-  </Tab>
-  <Tab value="Ruby">
-    ```ruby
-    def config
-      {
-        type: 'cron',
-        name: 'PeriodicJob',
-        description: 'Runs every minute and emits a timestamp',
-        cron: '0 * * * *',
-        emits: ['cron-ticked'],
-        flows: ['cron-example'],
-      }
-    end
-
-    def handler(context)
-      context.emit({
-        topic: 'cron-ticked',
-        data: { message: 'Cron job executed' },
-      })
-    end
-    ```
-
   </Tab>
 </Tabs>
 
@@ -1806,7 +1732,7 @@ This modular approach allows you to:
 - Maintain clear separation of concerns
 - Scale and modify parts of your system independently
 
-Steps can be defined in any language that Motia supports, such as TypeScript, JavaScript, Python, and Ruby. Steps can be of type [`event`](/docs/concepts/steps/event), [`api`](/docs/concepts/steps/api), or [`cron`](/docs/concepts/steps/cron). Steps are composed of a `config` object and a `handler` function.
+Steps can be defined in any language that Motia supports, such as TypeScript, JavaScript, and Python. Steps can be of type [`event`](/docs/concepts/steps/event), [`api`](/docs/concepts/steps/api), or [`cron`](/docs/concepts/steps/cron). Steps are composed of a `config` object and a `handler` function.
 
 ## Config
 
@@ -1868,19 +1794,19 @@ A handler holds the business logic of a step. When an event occurs that matches 
 
 Here're examples of how to define a handler in the Motia supported languages:
 
-<Tabs items={['TS', 'JS', 'Python', 'Ruby']}>
+<Tabs items={['TS', 'JS', 'Python']}>
   <Tab value="TS">
     ```typescript
-    import { EventConfig, StepHandler } from 'motia'
+    import { EventConfig, Handlers } from 'motia'
 
     export const config: EventConfig = {
       type: 'event',
-      name: 'Minimal Step',
+      name: 'MinimalStep',
       subscribes: ['start'],
       emits: ['done'],
     }
 
-    export const handler: StepHandler<typeof config> = async (input, { emit, traceId, state, logger }) => {
+    export const handler: Handlers['MinimalStep'] = async (input, { emit, traceId, state, logger }) => {
       await emit({ topic: 'done', data: {} })
     }
     ```
@@ -1910,22 +1836,6 @@ Here're examples of how to define a handler in the Motia supported languages:
 
     async def handler(args, ctx):
       await ctx.emit({'topic': 'done', 'data': {}})
-    ```
-  </Tab>
-  <Tab value="Ruby">
-    ```ruby
-    def config
-      {
-        type: 'event',
-        name: 'Minimal Step',
-        subscribes: ['start'],
-        emits: ['done'],
-      }
-    end
-
-    def handler(args, ctx)
-      ctx.emit({topic: 'done', data: {}})
-    end
     ```
   </Tab>
 </Tabs>
@@ -1958,29 +1868,23 @@ The following properties are specific to the Event Step, in addition to the [com
 
 The following examples showcase how to configure an **Event Step**
 
-<Tabs  items={['TS', 'JS', 'Python', 'Ruby']}>
+<Tabs  items={['TS', 'JS', 'Python']}>
   <Tab value="TS">
     ```typescript
-    import { EventConfig, StepHandler } from 'motia'
+    import { EventConfig, Handlers } from 'motia'
     import { z } from 'zod'
 
-    const inputSchema = z.object({
-      message: z.string()
-    })
-
-    type Input = typeof inputSchema
-
-    export const config: EventConfig<Input> = {
+    export const config: EventConfig = {
       type: 'event',
       name: 'stepA',
       description: 'Hello from Step A',
       subscribes: ['pms.start'],
       emits: ['pms.stepA.done'],
-      input: inputSchema,
+      input: z.object({ message: z.string() }),
       flows: ['parallel-merge'],
     }
 
-    export const handler: StepHandler<typeof config> = async (input, { emit, logger }) => {
+    export const handler: Handlers['stepA'] = async (input, { emit, logger }) => {
       logger.info('Processing message:', input.message)
 
       await emit({
@@ -1991,15 +1895,10 @@ The following examples showcase how to configure an **Event Step**
       })
     }
     ```
-
   </Tab>
   <Tab value="JS">
     ```javascript
     const z = require('zod');
-
-    const inputSchema = z.object({
-      message: z.string()
-    });
 
     const config = {
       type: 'event',
@@ -2007,7 +1906,7 @@ The following examples showcase how to configure an **Event Step**
       description: 'Hello from Step A',
       subscribes: ['pms.start'],
       emits: ['pms.stepA.done'],
-      input: inputSchema,
+      input: z.object({ message: z.string() });,
       flows: ['parallel-merge'],
     };
 
@@ -2024,71 +1923,235 @@ The following examples showcase how to configure an **Event Step**
 
     module.exports = { config, handler };
     ```
-
   </Tab>
   <Tab value="Python">
     ```python
-    from pydantic import BaseModel
-    
-    # Define a Pydantic model for input validation
-    class InputModel(BaseModel):
-        message: str
-    
     config = {
-        "type": "event",
-        "name": "Call OpenAI",
-        "subscribes": ["call-openai"], 
-        "emits": ["openai-response"],
-        "input": InputModel.model_json_schema(), # We use jsonschema to validate
-        "flows": ["openai"]
+      "type": "event",
+      "name": "Call OpenAI",
+      "subscribes": ["call-openai"], 
+      "emits": ["openai-response"],
+      "input": {
+        "type": "object",
+        "properties": { "type": "string" },
+      },
+      "flows": ["openai"]
     }
 
     async def handler(input, context):
-        context.logger.info('Processing input:', input)
+      context.logger.info("Processing input:", { "input": input })
 
-        await context.emit({
-            "topic": "openai-response",
-            "data": {
-                "result": f"Processed: {input.get('message', '')}"
-            }
-        })
-    ```
-
-  </Tab>
-  <Tab value="Ruby">
-    ```ruby
-    class Config
-      attr_reader :type, :name, :subscribes, :emits, :input, :flows
-
-      def initialize
-        @type = "event"
-        @name = "Call OpenAI"
-        @subscribes = ["call-openai"]
-        @emits = ["openai-response"]
-        @input = nil # No schema validation
-        @flows = ["openai"]
-      end
-    end
-
-    config = Config.new
-
-    def handler(input, context)
-      context.logger.info("Processing input: #{input}")
-
-      context.emit({
-        topic: "openai-response",
-        data: {
-          result: "Processed: #{input[:message]}"
+      await context.emit({
+        "topic": "openai-response",
+        "data": {
+          "result": f"Processed: {input.get("message", "")}"
         }
       })
-    end
     ```
-
   </Tab>
 </Tabs>
 
 ## Example
 
+
+-   [streams](/docs/concepts\streams.md): Documentation for streams.
+---
+title: Streams 
+description: Motia Streams are a way to quickly push updates from your asynchronous workflows to the client without having to implement any sort of polling processes.
+---
+
+## How it works
+
+You first need to define a stream in your project
+
+### Defining a stream
+
+To be able to use Motia Sockets, you need to define a stream
+
+Create a file called `open-ai.stream.ts` under `steps/` folder
+
+```typescript
+import { StateStreamConfig } from 'motia'
+import { z } from 'zod'
+
+export const config: StateStreamConfig = {
+  /**
+   * This will be converted in the property on the FlowContext:
+   * 
+   * context.streams.openai
+   */
+  name: 'openai',
+  /**
+   * Schema is important to define the type of the stream, the API
+   * generated to interact with this stream will have the structure defined here
+   */  
+  schema: z.object({ message: z.string() }),
+
+  /**
+   * Base config is used to configure the stream
+   */
+  baseConfig: {
+    /**
+     * There are two storage types: state and custom
+     * State will use the state manager to store the data.
+     * 
+     * Custom will use a custom storage, you need to implement 
+     * the StateStream class.
+     */
+    storageType: 'state',
+  },
+}
+```
+
+Once a stream is created, it should be immediately available in FlowContext (make sure to have motia running on the project)
+
+Then you can simply create records using the streams API in your step
+
+```typescript
+import { ApiRouteConfig, Handlers } from 'motia'
+import { z } from 'zod'
+
+export const config: ApiRouteConfig = {
+  type: 'api',
+  name: 'OpenAiApi',
+  description: 'Call OpenAI',
+  path: '/open-ai',
+  method: 'POST',
+  emits: ['openai-prompt'],
+  flows: ['open-ai'],
+  bodySchema: z.object({ message: z.string({ description: 'The message to send to OpenAI' }) }),
+  responseSchema: {
+    200: z.object({ message: z.string({ description: 'The message from OpenAI' }) }) 
+  },
+}
+
+export const handler: Handlers['OpenAiApi'] = async (req, { traceId, logger, emit, streams }) => {
+  logger.info('[Call OpenAI] Received callOpenAi event', { message: req.body.message })
+
+  /**
+   * This creates a record with empty message string to be populated in the next step
+   */
+  const result = await streams.openai.set(traceId, 'message', { message: '' })
+
+  await emit({
+    topic: 'openai-prompt',
+    data: { message: req.body.message },
+  })
+
+  return { status: 200, body: result }
+}
+```
+
+The previous step just prepares a message to be created by Open AI via OpenAI SDK stream, which will be populated in the next step
+
+```typescript
+import { EventConfig, Handlers } from 'motia'
+import { OpenAI } from 'openai'
+import { z } from 'zod'
+
+export const config: EventConfig = {
+  type: 'event',
+  name: 'CallOpenAi',
+  description: 'Call OpenAI',
+  subscribes: ['openai-prompt'],
+  emits: [],
+  input: z.object({
+    message: z.string({ description: 'The message to send to OpenAI' }),
+  }),
+  flows: ['open-ai'],
+}
+
+export const handler: Handlers['CallOpenAi'] = async (input, context) => {
+  const { logger, traceId } = context
+  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+
+  logger.info('[Call OpenAI] Received callOpenAi event', input)
+
+  const result = await openai.chat.completions.create({
+    messages: [{ role: 'system', content: input.message }],
+    model: 'gpt-4o-mini',
+    stream: true,
+  })
+
+  const messages: string[] = []
+
+  for await (const chunk of result) {
+    messages.push(chunk.choices[0].delta.content ?? '')
+
+    /**
+     * Now we're populating a previously created message with the streamed data from OpenAI
+     */
+    await context.streams.openai.set(traceId, 'message', { 
+      message: messages.join(''),
+    })
+  }
+
+  logger.info('[Call OpenAI] OpenAI response', result)
+}
+```
+
+## Testing Streams in Workbench
+
+We know testing real time events is not easy as a backend developer, so we've added a way to test streams in the Workbench.
+
+Here are the steps to test streams in the Workbench:
+
+1. The API Step that provides a stream item should return the object
+
+```typescript
+export const handler: Handlers['OpenAiApi'] = async (req, { traceId, logger, emit, streams }) => {
+  logger.info('[Call OpenAI] Received callOpenAi event', { message: req.body.message })
+
+  /**
+   * This creates a record with empty message string to be populated in the next step
+   */
+  const result = await streams.openai.set(traceId, 'message', { message: '' })
+
+  await emit({
+    topic: 'openai-prompt',
+    data: { message: req.body.message },
+  })
+
+  /**
+   * Return the entire object received from the create method
+   */
+  return { status: 200, body: result }
+}
+```
+
+2. Navigate to [http://localhost:3000/endpoints](http://localhost:3000/endpoints) in your Workbench
+3. Open up your endpoint and click on the `Test` button
+4. The result will automatically be streamed from the server to the client streaming it's state real-time.
+
+![Stream Test in Workbench](./../img/streams-test-workbench.gif)
+
+
+## Consuming stream on the browser
+
+```
+npm install @motiadev/stream-client-react
+```
+
+Then add the provider to the root of your project
+
+```tsx
+<MotiaStreamProvider address="ws://localhost:3000">
+  ...
+</MotiaStreamProvider>
+```
+
+then on your component or hook, just use
+
+```typescript
+const messageId = '' // get the id back from the API call
+
+// data below will be updated whenever it's updated in the server
+const { data } = useStreamItem({ 
+  streamName: 'openai',
+  groupId: messageId,
+  id: 'message'
+})
+```
 
 -   [testing](/docs/concepts\testing.md): Documentation for testing.
 ---
@@ -2348,18 +2411,13 @@ Sometimes you don't just want a **simple** "prompt => response." Instead, you wa
     // 1) Create an OpenAI client (newer syntax)
     const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
 
-    // 2) Define the input schema for your step
-    const inputSchema = z.object({
-      text: z.string(),
-    })
-
-    export const config: EventConfig<typeof inputSchema> = {
+    export const config: EventConfig = {
       type: 'event',
       name: 'OpenAI Sentiment Analyzer',
       subscribes: ['openai.analyzeSentimentRequest'],
       // We'll emit different events: "openai.positiveSentiment" or "openai.negativeSentiment"
       emits: ['openai.positiveSentiment', 'openai.negativeSentiment'],
-      input: inputSchema,
+      input: z.object({ text: z.string() }),
       flows: ['sentiment-demo'],
     }
 
@@ -2421,17 +2479,15 @@ Sometimes you don't just want a **simple** "prompt => response." Instead, you wa
     import { EventConfig, StepHandler } from 'motia'
     import { z } from 'zod'
 
-    const positiveSchema = z.object({
-      sentiment: z.string(),
-      analysis: z.string().optional(),
-    })
-
-    export const config: EventConfig<typeof positiveSchema> = {
+    export const config: EventConfig = {
       type: 'event',
       name: 'Positive Sentiment Responder',
       subscribes: ['openai.positiveSentiment'],
       emits: [],
-      input: positiveSchema,
+      input: z.object({
+        sentiment: z.string(),
+        analysis: z.string().optional(),
+      }),
       flows: ['sentiment-demo'],
     }
 
@@ -2448,17 +2504,15 @@ Sometimes you don't just want a **simple** "prompt => response." Instead, you wa
     import { EventConfig, StepHandler } from 'motia'
     import { z } from 'zod'
 
-    const negativeSchema = z.object({
-      sentiment: z.string(),
-      analysis: z.string().optional(),
-    })
-
-    export const config: EventConfig<typeof negativeSchema> = {
+    export const config: EventConfig = {
       type: 'event',
       name: 'Negative Sentiment Responder',
       subscribes: ['openai.negativeSentiment'],
       emits: [],
-      input: negativeSchema,
+      input: z.object({
+        sentiment: z.string(),
+        analysis: z.string().optional(),
+      }),
       flows: ['sentiment-demo'],
     }
 
@@ -2615,18 +2669,13 @@ Sometimes you don't just want a **simple** "prompt => response." Instead, you wa
     // 1) Create an OpenAI client (newer syntax)
     const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
 
-    // 2) Define the input schema for your step
-    const inputSchema = z.object({
-      text: z.string(),
-    })
-
-    export const config: EventConfig<typeof inputSchema> = {
+    export const config: EventConfig = {
       type: 'event',
       name: 'OpenAI Sentiment Analyzer',
       subscribes: ['openai.analyzeSentimentRequest'],
       // We'll emit different events: "openai.positiveSentiment" or "openai.negativeSentiment"
       emits: ['openai.positiveSentiment', 'openai.negativeSentiment'],
-      input: inputSchema,
+      input: z.object({ text: z.string() }),
       flows: ['sentiment-demo'],
     }
 
@@ -2688,17 +2737,15 @@ Sometimes you don't just want a **simple** "prompt => response." Instead, you wa
     import { EventConfig, StepHandler } from 'motia'
     import { z } from 'zod'
 
-    const positiveSchema = z.object({
-      sentiment: z.string(),
-      analysis: z.string().optional(),
-    })
-
-    export const config: EventConfig<typeof positiveSchema> = {
+    export const config: EventConfig = {
       type: 'event',
       name: 'Positive Sentiment Responder',
       subscribes: ['openai.positiveSentiment'],
       emits: [],
-      input: positiveSchema,
+      input: z.object({
+        sentiment: z.string(),
+        analysis: z.string().optional(),
+      }),
       flows: ['sentiment-demo'],
     }
 
@@ -2715,17 +2762,15 @@ Sometimes you don't just want a **simple** "prompt => response." Instead, you wa
     import { EventConfig, StepHandler } from 'motia'
     import { z } from 'zod'
 
-    const negativeSchema = z.object({
-      sentiment: z.string(),
-      analysis: z.string().optional(),
-    })
-
-    export const config: EventConfig<typeof negativeSchema> = {
+    export const config: EventConfig = {
       type: 'event',
       name: 'Negative Sentiment Responder',
       subscribes: ['openai.negativeSentiment'],
       emits: [],
-      input: negativeSchema,
+      input: z.object({
+        sentiment: z.string(),
+        analysis: z.string().optional(),
+      }),
       flows: ['sentiment-demo'],
     }
 
@@ -2811,110 +2856,83 @@ Try it out, see the branching logic in action, and enjoy skipping all the boring
 -   [core-concepts](/docs/getting-started\core-concepts.md): Documentation for core-concepts.
 ---
 title: Core Concepts
-description: Understand the fundamental concepts behind Motia - Steps, Flows, Events, and Topics.
+description: Understand the fundamental concepts behind Motia.
 ---
 
-# Core Concepts: Building Blocks of Motia
+# Building Blocks of Motia
 
-To effectively build and utilize Motia, it's essential to grasp its foundational concepts. Motia workflows are built upon four key building blocks that work together to create powerful and flexible automation solutions: **Steps**, **Flows**, **Events**, and **Topics**.
+To effectively build and utilize Motia, it's essential to grasp its foundational concepts. Motia workflows are built upon three building blocks that work together to create powerful and flexible automation solutions: **API**, **Event**, **Cron**, **Noop**. They're all represented as **Steps**.
 
-This section provides a high-level overview of each concept. For a more in-depth understanding, follow the "Learn More" links provided for each section.
+## Everything is a Step
 
-## The Four Pillars of Motia Workflows
+As mentioned above, Motia has four primitives, API Step, Event Step, Cron Step, Noop Steps. They're all steps on a Workflow and can be connected.
 
-At its heart, Motia is designed around an event-driven architecture, allowing you to compose complex workflows from simple, independent units.  These core concepts are the foundation:
+## What is a Step?
 
-| Concept     | Description                                                                                                                                | Key Function                                                                                                                               |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Steps**   | Self-contained, reusable units of business logic. Steps are the workhorses of Motia, performing specific tasks within a workflow.         | Process data, interact with external systems, perform computations, manage state, and emit events to trigger subsequent actions.        |
-| **Flows**   | Logical containers that group related Steps together. Flows define the context and scope for a specific automation process.                | Organize and visualize workflows, provide a namespace for events, and enable flow-specific logging and state management.                 |
-| **Events**  | Lightweight messages that carry data and signal occurrences within the system. Events are the communication mechanism between Steps.      | Trigger Step execution, carry data between Steps, enable asynchronous and loosely coupled interactions.                               |
-| **Topics**  | Named channels or categories to which Events are published and Steps subscribe. Topics enable event routing and decouple Steps from each other. | Define event types, enable Steps to listen for specific events, and allow for flexible and dynamic workflow orchestration.        |
+Steps are arbitraty executable functions that run based on a certain criteria.
 
-## 🧱 Steps: The Units of Logic
+1. **API Steps**: Run whenever an HTTP endpoint defined in your workflow is called. These steps allow external systems or clients to trigger automated processes within Motia.
+2. **Event Steps**: Run whenever an event is emitted to a subscribed topic. These steps allow your workflow to react to changes or actions occurring within the Motia system.
+3. **Cron Steps**: Run automatically based on a defined schedule, such as "every day at 1pm", according to a cron expression. These steps are ideal for automating recurring tasks.
+4. **Noop Steps**: "Noop" stands for "No operation." These steps contain no logic and are used to represent actions that occur outside the Motia ecosystem, such as manual tasks or external processes.
 
-**Steps** are the fundamental building blocks in Motia. They are self-contained units of code that perform a specific action or task within your workflow.  Think of them as individual functions or micro-services within your automation.
+## Example Step Types
 
-**Key Characteristics of Steps:**
-
-*   **Encapsulated Logic:** Each Step encapsulates a distinct piece of business logic, making your workflows modular and maintainable.  Steps are designed to be self-contained units, promoting code organization and reusability.
-*   **Handler Function:**  At the heart of every Step is a simple `handler` function. This function is where you write the core logic of your step, defining how it processes events, interacts with external services, manages state, and emits new events.
-*   **Leverage External Code:** Steps are not isolated silos! Within your `handler` function, you can import any necessary code – whether it's from local files within your project or external packages installed via package managers like npm, pip, or RubyGems. This allows you to leverage existing libraries and tools to enhance your step's functionality.
-*   **Reusability:** Steps are designed to be reusable across different flows and scenarios. Once you've created a Step, you can easily incorporate it into multiple workflows, saving development time and ensuring consistency.
-*   **Event-Driven:** Steps react to specific events (through subscriptions) and trigger further actions by emitting new events. This event-driven nature enables asynchronous, loosely coupled, and highly responsive workflows.
-*   **Multi-Language Support:** You can write Steps in TypeScript/JavaScript, Python, or Ruby, choosing the best language for the task at hand and even combining languages within the same workflow.
-*   **Configurable:** Each Step has a configuration (`config` object) that must be exported. This object defines its type, name, event subscriptions, emissions, and other relevant properties, allowing you to customize the Step's behavior and metadata.
-
-**Example Step Types:**
-
-*   **API Step:** Exposes an HTTP endpoint to trigger a flow from external systems.
-*   **Event Step:** Executes logic in response to a specific event within the Motia system.
-*   **Cron Step:** Schedules tasks to run at specific intervals based on cron expressions.
-*   **Noop Step:** Represents a placeholder for external processes or manual tasks, useful for visualization and workflow modeling.
+- **API Step:** Exposes an HTTP endpoint to trigger a flow from external systems.
+- **Event Step:** Executes logic in response to a specific event within the Motia system.
+- **Cron Step:** Schedules tasks to run at specific intervals based on cron expressions.
+- **Noop Step:** Represents a placeholder for external processes or manual tasks, useful for visualization and workflow modeling.
 
 **➡️ [Learn More about Defining Steps](/docs/concepts/steps/defining-steps)**
 
-## 🌊 Flows: Orchestrating Your Workflows
+## Flows: Orchestrating Your Workflows
 
-**Flows** provide a logical structure for organizing and managing your Steps.  A Flow represents a complete automation process, grouping together the Steps that work together to achieve a specific goal.
+Steps are connected through topics. For example, an API Step can emit a message to a topic, which an Event Step subscribes to and reacts upon. By chaining these connections, you create a flow—where step A triggers step B, which then triggers step C, and so on.
 
-**Key Aspects of Flows:**
+**Flows** provide a logical structure for organizing and managing your Steps. A Flow represents a complete automation process, grouping together the Steps that work together to achieve a specific goal.
 
-*   **Organization:** Flows help you structure complex automations by grouping related Steps, making your workflows easier to understand and manage.
-*   **Visualization:** Motia Workbench uses Flows to visually represent your workflows as interactive diagrams, showing the connections and event flow between Steps.
-*   **Context and Scope:** Flows define a context for Steps, allowing for flow-specific configurations, logging, and state management.
-*   **Event Namespacing:** Events are often scoped within a Flow, ensuring that events emitted in one flow are less likely to interfere with events in another.
+### Key Aspects of Flows
 
-**Example Flow Scenarios:**
+- **Organization:** Flows help you structure complex automations by grouping related Steps, making your workflows easier to understand and manage.
+- **Visualization:** Motia Workbench uses Flows to visually represent your workflows as interactive diagrams, showing the connections and event flow between Steps.
+- **Context and Scope:** Flows define a context for Steps, allowing for flow-specific configurations, logging, and state management.
+- **Event Namespacing:** Events are often scoped within a Flow, ensuring that events emitted in one flow are less likely to interfere with events in another.
 
-*   **Order Processing Flow:** Steps for order validation, payment processing, inventory updates, and shipping notifications.
-*   **User Onboarding Flow:** Steps for account creation, email verification, welcome messages, and initial setup tasks.
-*   **Data Synchronization Flow:** Steps for fetching data from an external source, transforming it, and updating a database.
+### Example Flow Scenarios
 
-**➡️ [Learn More about Flows and Visualization](/docs/concepts/flows-and-visualization)**
+- **Order Processing Flow:** Steps for order validation, payment processing, inventory updates, and shipping notifications.
+- **User Onboarding Flow:** Steps for account creation, email verification, welcome messages, and initial setup tasks.
+- **Data Synchronization Flow:** Steps for fetching data from an external source, transforming it, and updating a database.
 
-## ✉️ Events: The Language of Motia
+### Virtually connecting steps
 
-**Events** are the lifeblood of Motia workflows. They are lightweight messages that are emitted by Steps to signal that something has happened or that a certain stage in a process has been reached.  Other Steps can then react to these events, creating a dynamic and responsive system.
+Sometimes, a workflow needs to represent actions that occur outside the Motia ecosystem—such as manual tasks or
+external processes—to make the flow comprehensive and easy to understand. In these cases, you can use Noop Steps
+to create virtual connections between steps, ensuring your flow remains visually and logically complete.
 
-**Key Characteristics of Events:**
+**Example: Content Creation Workflow**
 
-*   **Asynchronous Communication:** Events enable Steps to communicate asynchronously and in a loosely coupled manner. Steps don't need to know about each other directly; they communicate through events.
-*   **Data Carriers:** Events can carry data payloads, allowing Steps to pass information to each other as the workflow progresses.
-*   **Typed Events:** Events have a `type` (or topic), which is a string identifier that indicates the kind of event that has occurred (e.g., `"order.created"`, `"payment.processed"`, `"data.transformed"`).
-*   **Emission and Subscription:** Steps `emit` events to signal actions and `subscribe` to events to react to actions triggered by other Steps.
+1. Article is created by a user
+2. Article needs to be reviewed by a moderator
+3. The moderator approves it, making the article public and listed somewhere.
 
-**Example Event Types:**
+In this example, step 2 (moderator review) is a virtual connection between steps 1 and 3.
+This can be represented by a Noop Step:
 
-*   `order.created`:  Signals that a new order has been placed.
-*   `payment.processed`: Indicates that a payment has been successfully processed.
-*   `data.transformed`:  Signals that data transformation step has completed.
-*   `email.sent`:  Indicates that an email notification has been sent.
+```
+┌──────────────────┐      ┌─────────────────────┐      ┌────────────────────────────┐
+│  POST /article   │ ───► │  Moderator review   │ ───► │  POST /article/:id/review  │
+└──────────────────┘      └─────────────────────┘      └────────────────────────────┘
+```
 
-TODO:
-**➡️ [Learn More about Event-Driven Architecture (external resource - consider linking to a good article on event-driven systems)]**
-
-## 🏷️ Topics: Routing and Filtering Events
-
-**Topics** are used to categorize and route events within Motia.  When a Step emits an event, it emits it with a specific topic. Steps that are interested in handling that type of event `subscribe` to that topic.
-
-**Key Roles of Topics:**
-
-*   **Event Routing:** Topics act as channels, ensuring that events are delivered only to Steps that have subscribed to the relevant topic.
-*   **Decoupling:** Topics further decouple Steps, as Steps only need to know about event topics, not about the specific Steps that might emit or handle those events.
-*   **Flexibility and Scalability:** Topics enable flexible and scalable workflow designs. You can easily add new Steps that subscribe to existing topics or introduce new topics to extend your workflows.
-
-**Example Topic Usage:**
-
-*   A Step emitting an order confirmation event might use the topic `"order.confirmed"`.
-*   Steps that need to handle order confirmations (e.g., sending email notifications, updating inventory) would subscribe to the `"order.confirmed"` topic.
-
-TODO:
-**➡️ [Learn More about Topics and Event Routing (link to internal docs section on event manager or routing if you create one, otherwise, leave as external resource link to pub/sub patterns)]**
+Without a Noop Step, the other two steps would appear disconnected, which could lead to confusion in the flow diagram.
+By including a Noop Step, you maintain clarity and accurately represent the entire process, even when some actions
+happen outside of Motia.
 
 ---
 
-By understanding these four core concepts – Steps, Flows, Events, and Topics – you'll have a solid foundation for building powerful and maintainable automation workflows with Motia. Continue exploring the documentation to delve deeper into each concept and start building your own amazing automations!
+By understanding these core concepts – you'll have a solid foundation for building powerful and maintainable automation workflows with Motia. Continue exploring the documentation to delve deeper into each concept and start building your own amazing automations!
+
 
 -   [index](/docs/getting-started\index.md): Documentation for index.
 ---
@@ -2938,7 +2956,7 @@ Welcome to Motia!  Ready to build your first event-driven workflow? This guide w
 Before you begin, ensure you have the following installed:
 
 - **Node.js (v16.0 or later):** Motia runs on Node.js, so this is essential for running the development server and your workflows.
-- **Basic Understanding of programming:**  motia steps are written in Javascript, Typescript, Python and/or Ruby.
+- **Basic Understanding of programming:**  motia steps are written in Javascript, Typescript, and/or Python.
 - **Basic Understanding of React:**  While you don't need to be a React expert, a basic familiarity will be helpful for understanding the UI Workbench and customizing UI steps.
 
 ## Your Next Steps:
@@ -3028,11 +3046,15 @@ You should see a new folder created with the following files inside:
 
   <Files>
     <Folder name="steps" defaultOpen>
-      <File name="one.step.ts" />
-      <File name="two.step.ts" />
-      <File name="api.step.ts" />
+      <File name="00-noop.step.ts" />
+      <File name="00-noop.step.tsx" />
+      <File name="01-api.step.ts" />
+      <File name="02-test-state.step.ts" />
+      <File name="03-check-state-change.step.ts" />
     </Folder>
     <File name="package.json" />
+    <File name="tsconfig.json" />
+    <File name="types.d.ts" />
   </Files>
 </Tab>
     <Tab value="Manual">
@@ -3079,51 +3101,48 @@ You should see a new folder created with the following files inside:
 
   </Step>
   <Step>
-  ### Minimal Step Example (Already Included!)
+  ### Minimal Step Example
 
-✨ **Good News!** If you used the automated project setup with the `default` template (as recommended above), you can **skip this step!**
+**The initial project comes with sample steps, but in this step we're going to walk you through on creating a new one**
 
-The `default` template already includes example steps in the `steps` folder, including `addNumbers.step.js` (or similar, depending on the template). These pre-built steps are ready for you to explore and run.
-
----
-
-**If you chose not to use the template or want to create a step from scratch manually,** follow these steps:
-
-1.  **Create a `steps` folder** in your project's root directory (if you haven't already).
-
-2.  **Create a new file** named `addNumbers.step.js` (or `addNumbers.step.ts` for TypeScript) inside the `steps` folder.
+1.  **Create a new file** named `hello-world.step.js` (or `hello-world.step.ts` for TypeScript) inside the `steps` folder.
 
     <Files>
       <Folder name="steps" defaultOpen>
-        <File name="addNumbers.step.js" />
+        <File name="hello-world.step.js" />
       </Folder>
     </Files>
 
-3.  **Paste the following code** into your `addNumbers.step.js` file:
+2.  **Paste the following code** into your `hello-world.step.js` file:
 
-    ```javascript
-    exports.config = {
-      type: "event", // "event", "api", or "cron"
-      name: "AddNumbers",
-      subscribes: ["add-numbers"],
-      emits: ["numbers-added"],
-      flows: ["numbers"],
-    };
+        ```javascript
+        exports.config = {
+          type: 'api', // "event", "api", or "cron"
+          path: '/hello-world',
+          method: 'GET',
+          name: 'HelloWorld',
+          emits: [],
+          flows: ['HelloWorld'],
+        }
 
-    exports.handler = async (input, { emit }) => {
-      const sum = (input.a || 0) + (input.b || 0);
-      await emit({
-        topic: "numbers-added",
-        data: { result: sum },
-      });
-    };
-    ```
+        exports.handler = async () => {
+          return {
+            status: 200,
+            body: { message: 'Hello World' },
+          }
+        }
+        ```
+        This minimal API step creates a **GET** endpoint on `/hello-world` that returns a JSON
 
-    This minimal step **listens** for the event `"add-numbers"` and **emits** `"numbers-added"`. It's a basic example to get you started.
+        ```json
+        { "message": "Hello World" }
+        ```
 
   </Step>
-  <Step>
-  ### Start Motia Development Server & Workbench
+
+   <Step>
+
+### Start Motia Development Server & Workbench
 
 Now, let's start Motia and see your workflow in action!
 
@@ -3131,11 +3150,11 @@ Now, let's start Motia and see your workflow in action!
 
 2.  **Run the development server command:** Use the `dev` script that was set up in your `package.json`:
 
-    <Tabs items={["pnpm", "yarn", "npm", "bun"]}>
-      <Tab value="pnpm">```bash pnpm run dev ```</Tab>
-      <Tab value="yarn">```bash yarn run dev ```</Tab>
-      <Tab value="npm">```bash npm run dev ```</Tab>
-      <Tab value="bun">```bash bun run dev ```</Tab>
+    <Tabs items={['npm', 'yarn', 'pnpm', 'bun']}>
+      <Tab value="yarn">```yarn run dev ```</Tab>
+      <Tab value="npm">```npm run dev ```</Tab>
+      <Tab value="pnpm">```pnpm run dev ```</Tab>
+      <Tab value="bun">```bun run dev ```</Tab>
     </Tabs>
 
     Motia will:
@@ -3145,8 +3164,8 @@ Now, let's start Motia and see your workflow in action!
     - **Launch** a development server and the Motia Workbench UI (typically at [`http://localhost:3000`](http://localhost:3000)).
 
     <Callout type="info">
-      **Changing the Port:** To run the Workbench on a different port, use the
-      `--port` option: `pnpm run dev --port 3001`
+      **Changing the Port:** To run the Workbench on a different port, use the `--port` option: `pnpm run dev --port
+      3001`
     </Callout>
 
   </Step>
@@ -3158,13 +3177,13 @@ Now, let's start Motia and see your workflow in action!
     2.  **Locate your Flow in the Sidebar:** On the left sidebar of the Workbench UI, you should see a list of Flows.
 
         *   **For the default template:**  You'll find a flow named "**default**".
-        *   **For the `addNumbers.step.js` example:** You'll find a flow named "**numbers**".
+        *   **For the `hello-world.step.js` example:** You'll find a flow named "**HelloWorld**".
 
     3.  **Select your Flow:** Click on the flow name in the sidebar.
 
     4.  **Observe the Visual Flow:** You should now see a visual representation of your flow in the main panel. This is the Motia Workbench visualizing the steps and event flow within your application!
 
-        ![Flow Visualization in Workbench](./../img/workbench-example.png)
+        ![Flow Visualization in Workbench](./../img/hello-world-workbench.png)
 
         <Callout type="info">
             You can click and drag the nodes in the visual editor to rearrange them for better clarity. Explore the UI to familiarize yourself with the Workbench!
@@ -3174,42 +3193,32 @@ Now, let's start Motia and see your workflow in action!
     <Step>
     ### Test your step
 
-    You can test your step using the **Motia** CLI:
+    Now you created the step `hello-world.js`, which creates a **GET** `/hello-world` endpoint, you can test by either opening http://localhost:3000/hello-world or
 
-    <Tabs items={['cli', 'curl']}>
-      <Tab value='cli'>
-      If you used the automated project setup with the default template, you can test your step by emitting the following event:
-      ```bash
-      npx motia emit --topic test-state --message '{}'
-      ```
+    ```bash
+    curl http://localhost:3000/hello-world
+    ```
 
-      If you used the add number example, you can test your step by emitting the following event:
+    This is a really simple example where you can have your first step running.
 
-      ```bash
-      npx motia emit --topic add-numbers --message '{"a": 5, "b": 3}'
-      ```
+    </Step>
 
-      </Tab>
-      <Tab value='curl'>
-        If you used the automated project setup with the default template, you can test your step by emitting the following event:
-        ```bash
-        curl -X POST http://localhost:3000/default \
-        -H "Content-Type: application/json" \
-        -d '{}'
-        ```
-        <Callout type="warn">You can't test the add number example using curl, you will need to use the CLI, using an api endpoint requires an api step.</Callout>
-      </Tab>
-    </Tabs>
+    <Step>
+    ### Understanding a flow with events
 
-    Motia will:
+    Now you already created an API Steps, let's check the flow that's already in the project, click on `default` flow on Workbench sidebar on the left. (Or navigate to http://localhost:3000/flow/default)
 
-    Emit a new event with the provided topic and message
+    You should see the page below
 
-    The event manager will detect the new event and match it against your registered step
+    ![Flow Visualization in Workbench](./../img/getting-started-workbench.png)
 
-    Execute your step with the provided input
+    This flow is a little bit more advanced, it has Noop steps (which we are going to talk about later), API steps, and Event steps.
 
-    Log the journey of the event, including the emitted numbers-added event
+    Event steps are code that can take some time to finish and can have errors (like LLM calls which are non-deterministic), in case they fail, they can rerun later.
+
+    In the flow represented by the image above you should see a node with a button to start it, go ahead an click it and check the logs that are generated.
+
+    Now let's dive deep on the flow you already executed. Let's jump in to [Core concepts](/docs/getting-started/core-concepts)
 
     </Step>
 
@@ -3231,55 +3240,37 @@ Motia is a **code-first framework** designed to empower developers to build robu
 Motia is built with the developer in mind, offering a unique blend of simplicity and power. Here's why Motia stands out:
 
 - 🚀 **Zero Infrastructure Setup:** Say goodbye to the complexities of message queues and event brokers! Motia handles the underlying infrastructure, allowing you to focus solely on building your workflows.
-
-- 🔌 **Plug-and-Play Steps in Your Language:**  Develop your workflow logic using the languages you love: JavaScript, TypeScript, Python, and Ruby. Mix and match languages within the same flow for ultimate flexibility.
-
+- 🔌 **Plug-and-Play Steps in Your Language:** Develop your workflow logic using the languages you love: JavaScript, TypeScript, and Python. Mix and match languages within the same flow for ultimate flexibility.
 - 📊 **Built-in Observability:** Gain deep insights into your workflows with real-time logs, traces, and interactive flow visualizations right in the Motia Workbench. Debugging and monitoring have never been easier.
-
-- ⚡ **Out-of-the-Box API & Scheduling:**  Instantly expose your workflows as HTTP endpoints and schedule tasks with cron expressions – no extra configuration needed.
-
-- ✨ **Flexible and Extensible Architecture:**  Motia is designed to be easily extended and customized. Create custom steps, UI components, and adapt the framework to your specific needs.
-
-- 🧑‍💻 **Developer-First Experience:**  From intuitive APIs and a powerful CLI to comprehensive documentation and a visual workbench, Motia prioritizes developer productivity and a smooth, enjoyable development experience.
+- ⚡ **Out-of-the-Box API & Scheduling:** Instantly expose your workflows as HTTP endpoints and schedule tasks with cron expressions – no extra configuration needed.
+- ✨ **Flexible and Extensible Architecture:** Motia is designed to be easily extended and customized. Create custom steps, UI components, and adapt the framework to your specific needs.
+- 🧑‍💻 **Developer-First Experience:** From intuitive APIs and a powerful CLI to comprehensive documentation and a visual workbench, Motia prioritizes developer productivity and a smooth, enjoyable development experience.
 
 ## Motia Workbench: Your Development Control Center
 
 Motia Workbench is a built-in, browser-based development platform that acts as your central hub for building, testing, and debugging Motia flows. Key features include:
 
-- **Interactive Flow Visualization:**  See your workflows come to life as dynamic diagrams, making it easy to understand complex event flows and step interactions.
+- **Interactive Flow Visualization:** See your workflows come to life as dynamic diagrams, making it easy to understand complex event flows and step interactions.
 
-- **Real-time Flow Testing:**  Trigger API endpoints and monitor event propagation through your steps, all within the Workbench UI. Inspect data at each stage to ensure your flows are behaving as expected.
+- **Real-time Flow Testing:** Trigger API endpoints and monitor event propagation through your steps, all within the Workbench UI. Inspect data at each stage to ensure your flows are behaving as expected.
 
-- **Live Log Streaming:**  Access detailed, real-time logs directly in the Workbench. Filter and search logs to quickly pinpoint issues and monitor workflow execution.
+- **Live Log Streaming:** Access detailed, real-time logs directly in the Workbench. Filter and search logs to quickly pinpoint issues and monitor workflow execution.
 
-- **Step-Level Customization:**  Create custom UI components for your steps to enhance visualization and provide context-specific information directly within the flow diagram.
+- **Step-Level Customization:** Create custom UI components for your steps to enhance visualization and provide context-specific information directly within the flow diagram.
 
-<div className="my-8">
-  ![Motia Workbench Interface](./img/workbench-presentation.png)
-</div>
-
-## Core Concepts: Building Blocks of Motia
-
-Motia workflows are built using a few core concepts that work together harmoniously:
-
-| Concept    | Description                                                                                                |
-| ---------- | ---------------------------------------------------------------------------------------------------------- |
-| **Steps**  | Self-contained, reusable units of business logic. Steps subscribe to events, process data, and emit events. |
-| **Flows**  | Logical groupings of related steps that together accomplish a specific task or process.                     |
-| **Events** | Messages that are emitted by steps and trigger other steps that subscribe to them.                          |
-| **Topics** | Named channels or categories for events, enabling event routing and decoupling between steps.              |
+<div className="my-8">![Motia Workbench Interface](./img/workbench-presentation.png)</div>
 
 ## Unlock Powerful Use Cases
 
 Motia empowers you to build a wide range of sophisticated applications, including:
 
-- 🌐 **API Integrations & Microservices:**  Effortlessly connect disparate systems, create event-driven microservices, and build real-time API-powered applications.
+- 🌐 **API Integrations & Microservices:** Effortlessly connect disparate systems, create event-driven microservices, and build real-time API-powered applications.
 
-- 🤖 **Intelligent & Agentic Workflows:**  Design complex, AI-driven workflows, orchestrate intricate business processes, and build advanced data pipelines.
+- 🤖 **Intelligent & Agentic Workflows:** Design complex, AI-driven workflows, orchestrate intricate business processes, and build advanced data pipelines.
 
-- 📊 **Data Transformation & Processing:**  Build scalable ETL/ELT pipelines, implement real-time data streaming, and transform data with ease.
+- 📊 **Data Transformation & Processing:** Build scalable ETL/ELT pipelines, implement real-time data streaming, and transform data with ease.
 
-- 🚀 **Rapid Prototyping & Iteration:**  Quickly bring your ideas to life, test new workflows, and iterate rapidly with Motia's visual design and development tools.
+- 🚀 **Rapid Prototyping & Iteration:** Quickly bring your ideas to life, test new workflows, and iterate rapidly with Motia's visual design and development tools.
 
 ### Real-World Industry Applications
 
@@ -3297,13 +3288,13 @@ Embark on your Motia journey and start building powerful workflows today:
 
 1.  **Quick Start Guide:** Follow our [Quick Start](/docs/getting-started/quick-start) to set up your first Motia project and create a minimal workflow.
 2.  **Explore Examples:** Dive into practical [Examples](/docs/examples) to understand common patterns and real-world use cases.
-3.  **Dive into Concepts:**  Delve deeper into Motia's [Core Concepts](/docs/getting-started/core-concepts) to gain a solid understanding of the framework's architecture and principles.
+3.  **Dive into Concepts:** Delve deeper into Motia's [Core Concepts](/docs/getting-started/core-concepts) to gain a solid understanding of the framework's architecture and principles.
 
 ## Join the Motia Community
 
 Become part of a growing community of developers and automation enthusiasts!
 
-- 💬 **Join our Discord:**  Connect with the Motia team and fellow developers, ask questions, share ideas, and get real-time help: [Discord Community](https://discord.gg/nJFfsH5d6v)
+- 💬 **Join our Discord:** Connect with the Motia team and fellow developers, ask questions, share ideas, and get real-time help: [Discord Community](https://discord.gg/nJFfsH5d6v)
 - 🐙 **Star us on GitHub:** Show your support, contribute to the project, and report issues on our [GitHub Repository](https://github.com/motiadev/motia).
 - 🐦 **Follow us on Twitter:** Stay up-to-date with the latest news, announcements, and community updates: [Twitter (@motiadev)](https://twitter.com/motiadev)
 
@@ -3316,7 +3307,7 @@ title: AI Deep Research Agent
 description: A powerful research assistant that leverages the Motia Framework to perform comprehensive web research on any topic and any question.
 ---
 
-import { CodeFetcher } from "../../../components/CodeFetcher";
+import { CodeFetcher } from '../../../components/CodeFetcher'
 
 ## Let's build a finance agent that:
 
@@ -3341,64 +3332,16 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
   <File name="status-api.step.ts" />
 </Folder>
 
-<Tabs
-  items={[
-    "analyze-content",
-    "compile-report",
-    "extract-content",
-    "follow-up-research",
-    "generate-queries",
-    "report-api",
-    "research-api",
-    "search-web",
-    "status-api",
-  ]}
->
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="analyze-content"
-    value="analyze-content"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="compile-report"
-    value="compile-report"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="extract-content"
-    value="extract-content"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="follow-up-research"
-    value="follow-up-research"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="generate-queries"
-    value="generate-queries"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="report-api"
-    value="report-api"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="research-api"
-    value="research-api"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="search-web"
-    value="search-web"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="status-api"
-    value="status-api"
-  />
+<Tabs items={['analyze-content', 'compile-report', 'extract-content', 'follow-up-research', 'generate-queries', 'report-api', 'research-api', 'search-web', 'status-api']}>
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="analyze-content" value="analyze-content" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="compile-report" value="compile-report" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="extract-content" value="extract-content" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="follow-up-research" value="follow-up-research" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="generate-queries" value="generate-queries" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="report-api" value="report-api" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="research-api" value="research-api" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="search-web" value="search-web" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="status-api" value="status-api" />
 </Tabs>
 
 ## 🚀 Features
@@ -3421,14 +3364,12 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
 ## 🛠️ Installation
 
 1. Clone the repository:
-
    ```bash
    git clone https://github.com/MotiaDev/motia-examples
    cd examples/ai-deep-research-agent
    ```
 
 2. Install dependencies:
-
    ```bash
    pnpm install
    # or
@@ -3436,13 +3377,11 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
    ```
 
 3. Configure environment variables:
-
    ```bash
    cp .env.example .env
    ```
 
    Update `.env` with your API keys:
-
    ```bash
    # Required
    OPENAI_API_KEY=your-openai-api-key-here
@@ -3456,6 +3395,7 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
 ## 🏗️ Architecture
 
 ![AI Deep Research Agent](../img/ai-deep-research-agent.png)
+
 
 ## 🚦 API Endpoints
 
@@ -3473,7 +3413,6 @@ Content-Type: application/json
 ```
 
 Response:
-
 ```json
 {
   "message": "Research process started",
@@ -3488,7 +3427,6 @@ GET /research/status?requestId=unique-trace-id
 ```
 
 Response:
-
 ```json
 {
   "message": "Research status retrieved successfully",
@@ -3511,7 +3449,6 @@ GET /research/report?requestId=unique-trace-id
 ```
 
 Response:
-
 ```json
 {
   "message": "Research report retrieved successfully",
@@ -3524,7 +3461,10 @@ Response:
         "content": "Section content..."
       }
     ],
-    "keyTakeaways": ["Key takeaway 1", "Key takeaway 2"],
+    "keyTakeaways": [
+      "Key takeaway 1",
+      "Key takeaway 2"
+    ],
     "sources": [
       {
         "title": "Source Title",
@@ -3544,13 +3484,11 @@ Response:
 ## 🏃‍♂️ Running the Application
 
 1. Start the development server:
-
    ```bash
    pnpm dev
    ```
 
 2. Access the Motia Workbench:
-
    ```
    http://localhost:3000
    ```
@@ -3566,13 +3504,11 @@ Response:
       "breadth": 1
    }'
    ```
-
 ## 🙏 Acknowledgments
 
 - [Motia Framework](https://motia.dev) for the event-driven workflow engine
-- [OpenAI](https://platform.openai.com/) for AI analysis
+- [OpenAI](https://platform.openai.com/) for AI analysis 
 - [Firecrawl](https://www.firecrawl.dev/) for Web search and content extraction API
-
 
 
 ## Use Cases
@@ -3582,7 +3518,7 @@ title: AI Deep Research Agent
 description: A powerful research assistant that leverages the Motia Framework to perform comprehensive web research on any topic and any question.
 ---
 
-import { CodeFetcher } from "../../../components/CodeFetcher";
+import { CodeFetcher } from '../../../components/CodeFetcher'
 
 ## Let's build a finance agent that:
 
@@ -3607,64 +3543,16 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
   <File name="status-api.step.ts" />
 </Folder>
 
-<Tabs
-  items={[
-    "analyze-content",
-    "compile-report",
-    "extract-content",
-    "follow-up-research",
-    "generate-queries",
-    "report-api",
-    "research-api",
-    "search-web",
-    "status-api",
-  ]}
->
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="analyze-content"
-    value="analyze-content"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="compile-report"
-    value="compile-report"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="extract-content"
-    value="extract-content"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="follow-up-research"
-    value="follow-up-research"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="generate-queries"
-    value="generate-queries"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="report-api"
-    value="report-api"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="research-api"
-    value="research-api"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="search-web"
-    value="search-web"
-  />
-  <CodeFetcher
-    path="examples/ai-deep-research-agent/steps"
-    tab="status-api"
-    value="status-api"
-  />
+<Tabs items={['analyze-content', 'compile-report', 'extract-content', 'follow-up-research', 'generate-queries', 'report-api', 'research-api', 'search-web', 'status-api']}>
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="analyze-content" value="analyze-content" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="compile-report" value="compile-report" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="extract-content" value="extract-content" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="follow-up-research" value="follow-up-research" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="generate-queries" value="generate-queries" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="report-api" value="report-api" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="research-api" value="research-api" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="search-web" value="search-web" />
+  <CodeFetcher path="examples/ai-deep-research-agent/steps" tab="status-api" value="status-api" />
 </Tabs>
 
 ## 🚀 Features
@@ -3687,14 +3575,12 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
 ## 🛠️ Installation
 
 1. Clone the repository:
-
    ```bash
    git clone https://github.com/MotiaDev/motia-examples
    cd examples/ai-deep-research-agent
    ```
 
 2. Install dependencies:
-
    ```bash
    pnpm install
    # or
@@ -3702,13 +3588,11 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
    ```
 
 3. Configure environment variables:
-
    ```bash
    cp .env.example .env
    ```
 
    Update `.env` with your API keys:
-
    ```bash
    # Required
    OPENAI_API_KEY=your-openai-api-key-here
@@ -3722,6 +3606,7 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
 ## 🏗️ Architecture
 
 ![AI Deep Research Agent](../img/ai-deep-research-agent.png)
+
 
 ## 🚦 API Endpoints
 
@@ -3739,7 +3624,6 @@ Content-Type: application/json
 ```
 
 Response:
-
 ```json
 {
   "message": "Research process started",
@@ -3754,7 +3638,6 @@ GET /research/status?requestId=unique-trace-id
 ```
 
 Response:
-
 ```json
 {
   "message": "Research status retrieved successfully",
@@ -3777,7 +3660,6 @@ GET /research/report?requestId=unique-trace-id
 ```
 
 Response:
-
 ```json
 {
   "message": "Research report retrieved successfully",
@@ -3790,7 +3672,10 @@ Response:
         "content": "Section content..."
       }
     ],
-    "keyTakeaways": ["Key takeaway 1", "Key takeaway 2"],
+    "keyTakeaways": [
+      "Key takeaway 1",
+      "Key takeaway 2"
+    ],
     "sources": [
       {
         "title": "Source Title",
@@ -3810,13 +3695,11 @@ Response:
 ## 🏃‍♂️ Running the Application
 
 1. Start the development server:
-
    ```bash
    pnpm dev
    ```
 
 2. Access the Motia Workbench:
-
    ```
    http://localhost:3000
    ```
@@ -3832,13 +3715,11 @@ Response:
       "breadth": 1
    }'
    ```
-
 ## 🙏 Acknowledgments
 
 - [Motia Framework](https://motia.dev) for the event-driven workflow engine
-- [OpenAI](https://platform.openai.com/) for AI analysis
+- [OpenAI](https://platform.openai.com/) for AI analysis 
 - [Firecrawl](https://www.firecrawl.dev/) for Web search and content extraction API
-
 
 -   [finance-agent](/docs/real-world-use-cases\finance-agent.md): Documentation for finance-agent.
 ---
@@ -3846,7 +3727,7 @@ title: Finance Agent
 description: A powerful event-driven financial analysis workflow that combines web search, financial data, and AI analysis to provide comprehensive investment insights.
 ---
 
-import { CodeFetcher } from "../../../components/CodeFetcher";
+import { CodeFetcher } from '../../../components/CodeFetcher'
 
 ## Let's build a finance agent that:
 
@@ -3867,52 +3748,14 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
   <File name="web-search.step.ts" />
 </Folder>
 
-<Tabs
-  items={[
-    "finance-data",
-    "openai-analysis",
-    "query-api",
-    "response-coordinator",
-    "result-api",
-    "save-result",
-    "web-search",
-  ]}
->
-  <CodeFetcher
-    path="examples/finance-agent/steps"
-    tab="finance-data"
-    value="finance-data"
-  />
-  <CodeFetcher
-    path="examples/finance-agent/steps"
-    tab="openai-analysis"
-    value="openai-analysis"
-  />
-  <CodeFetcher
-    path="examples/finance-agent/steps"
-    tab="query-api"
-    value="query-api"
-  />
-  <CodeFetcher
-    path="examples/finance-agent/steps"
-    tab="response-coordinator"
-    value="response-coordinator"
-  />
-  <CodeFetcher
-    path="examples/finance-agent/steps"
-    tab="result-api"
-    value="result-api"
-  />
-  <CodeFetcher
-    path="examples/finance-agent/steps"
-    tab="save-result"
-    value="save-result"
-  />
-  <CodeFetcher
-    path="examples/finance-agent/steps"
-    tab="web-search"
-    value="web-search"
-  />
+<Tabs items={['finance-data', 'openai-analysis', 'query-api', 'response-coordinator', 'result-api', 'save-result', 'web-search']}>
+  <CodeFetcher path="examples/finance-agent/steps" tab="finance-data" value="finance-data" />
+  <CodeFetcher path="examples/finance-agent/steps" tab="openai-analysis" value="openai-analysis" />
+  <CodeFetcher path="examples/finance-agent/steps" tab="query-api" value="query-api" />
+  <CodeFetcher path="examples/finance-agent/steps" tab="response-coordinator" value="response-coordinator" />
+  <CodeFetcher path="examples/finance-agent/steps" tab="result-api" value="result-api" />
+  <CodeFetcher path="examples/finance-agent/steps" tab="save-result" value="save-result" />
+  <CodeFetcher path="examples/finance-agent/steps" tab="web-search" value="web-search" />
 </Tabs>
 
 ## 🚀 Features
@@ -3937,14 +3780,12 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
 ## 🛠️ Installation
 
 1. Clone the repository:
-
    ```bash
    git clone https://github.com/MotiaDev/motia-examples
    cd examples/finance-agent
    ```
 
 2. Install dependencies:
-
    ```bash
    pnpm install
    # or
@@ -3952,13 +3793,11 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
    ```
 
 3. Configure environment variables:
-
    ```bash
    cp .env.example .env
    ```
 
    Update `.env` with your API keys:
-
    ```bash
    ALPHA_VANTAGE_API_KEY=your_alpha_vantage_api_key_here
    SERPER_API_KEY=your_serper_api_key_here
@@ -3970,6 +3809,7 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
 The workflow consists of several specialized steps that work together to provide comprehensive financial analysis:
 
 ![Finance Agent](../img/finance-agent.png)
+
 
 ## 🚦 API Endpoints
 
@@ -3985,7 +3825,6 @@ Content-Type: application/json
 ```
 
 Response:
-
 ```json
 {
   "message": "Query received and processing started",
@@ -4000,7 +3839,6 @@ GET /finance-result/:traceId
 ```
 
 Response:
-
 ```json
 {
   "query": "Latest information about AAPL and MSFT",
@@ -4018,13 +3856,11 @@ Response:
 ## 🏃‍♂️ Running the Application
 
 1. Start the development server:
-
    ```bash
    pnpm dev
    ```
 
 2. Access the Motia Workbench:
-
    ```
    http://localhost:3000
    ```
@@ -4035,14 +3871,12 @@ Response:
      -H "Content-Type: application/json" \
      -d '{"query": "Latest information about AAPL and MSFT"}'
    ```
-
 ## 🙏 Acknowledgments
 
 - [Motia Framework](https://motia.dev) for the event-driven workflow engine
 - [Alpha Vantage](https://www.alphavantage.co/) for financial data
 - [SerperDev](https://serper.dev/) for web search capabilities
-- [OpenAI](https://platform.openai.com/) for AI analysis
-
+- [OpenAI](https://platform.openai.com/) for AI analysis 
 
 
 ## Use Cases
@@ -4052,7 +3886,7 @@ title: Finance Agent
 description: A powerful event-driven financial analysis workflow that combines web search, financial data, and AI analysis to provide comprehensive investment insights.
 ---
 
-import { CodeFetcher } from "../../../components/CodeFetcher";
+import { CodeFetcher } from '../../../components/CodeFetcher'
 
 ## Let's build a finance agent that:
 
@@ -4073,52 +3907,14 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
   <File name="web-search.step.ts" />
 </Folder>
 
-<Tabs
-  items={[
-    "finance-data",
-    "openai-analysis",
-    "query-api",
-    "response-coordinator",
-    "result-api",
-    "save-result",
-    "web-search",
-  ]}
->
-  <CodeFetcher
-    path="examples/finance-agent/steps"
-    tab="finance-data"
-    value="finance-data"
-  />
-  <CodeFetcher
-    path="examples/finance-agent/steps"
-    tab="openai-analysis"
-    value="openai-analysis"
-  />
-  <CodeFetcher
-    path="examples/finance-agent/steps"
-    tab="query-api"
-    value="query-api"
-  />
-  <CodeFetcher
-    path="examples/finance-agent/steps"
-    tab="response-coordinator"
-    value="response-coordinator"
-  />
-  <CodeFetcher
-    path="examples/finance-agent/steps"
-    tab="result-api"
-    value="result-api"
-  />
-  <CodeFetcher
-    path="examples/finance-agent/steps"
-    tab="save-result"
-    value="save-result"
-  />
-  <CodeFetcher
-    path="examples/finance-agent/steps"
-    tab="web-search"
-    value="web-search"
-  />
+<Tabs items={['finance-data', 'openai-analysis', 'query-api', 'response-coordinator', 'result-api', 'save-result', 'web-search']}>
+  <CodeFetcher path="examples/finance-agent/steps" tab="finance-data" value="finance-data" />
+  <CodeFetcher path="examples/finance-agent/steps" tab="openai-analysis" value="openai-analysis" />
+  <CodeFetcher path="examples/finance-agent/steps" tab="query-api" value="query-api" />
+  <CodeFetcher path="examples/finance-agent/steps" tab="response-coordinator" value="response-coordinator" />
+  <CodeFetcher path="examples/finance-agent/steps" tab="result-api" value="result-api" />
+  <CodeFetcher path="examples/finance-agent/steps" tab="save-result" value="save-result" />
+  <CodeFetcher path="examples/finance-agent/steps" tab="web-search" value="web-search" />
 </Tabs>
 
 ## 🚀 Features
@@ -4143,14 +3939,12 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
 ## 🛠️ Installation
 
 1. Clone the repository:
-
    ```bash
    git clone https://github.com/MotiaDev/motia-examples
    cd examples/finance-agent
    ```
 
 2. Install dependencies:
-
    ```bash
    pnpm install
    # or
@@ -4158,13 +3952,11 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
    ```
 
 3. Configure environment variables:
-
    ```bash
    cp .env.example .env
    ```
 
    Update `.env` with your API keys:
-
    ```bash
    ALPHA_VANTAGE_API_KEY=your_alpha_vantage_api_key_here
    SERPER_API_KEY=your_serper_api_key_here
@@ -4176,6 +3968,7 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
 The workflow consists of several specialized steps that work together to provide comprehensive financial analysis:
 
 ![Finance Agent](../img/finance-agent.png)
+
 
 ## 🚦 API Endpoints
 
@@ -4191,7 +3984,6 @@ Content-Type: application/json
 ```
 
 Response:
-
 ```json
 {
   "message": "Query received and processing started",
@@ -4206,7 +3998,6 @@ GET /finance-result/:traceId
 ```
 
 Response:
-
 ```json
 {
   "query": "Latest information about AAPL and MSFT",
@@ -4224,13 +4015,11 @@ Response:
 ## 🏃‍♂️ Running the Application
 
 1. Start the development server:
-
    ```bash
    pnpm dev
    ```
 
 2. Access the Motia Workbench:
-
    ```
    http://localhost:3000
    ```
@@ -4241,14 +4030,12 @@ Response:
      -H "Content-Type: application/json" \
      -d '{"query": "Latest information about AAPL and MSFT"}'
    ```
-
 ## 🙏 Acknowledgments
 
 - [Motia Framework](https://motia.dev) for the event-driven workflow engine
 - [Alpha Vantage](https://www.alphavantage.co/) for financial data
 - [SerperDev](https://serper.dev/) for web search capabilities
-- [OpenAI](https://platform.openai.com/) for AI analysis
-
+- [OpenAI](https://platform.openai.com/) for AI analysis 
 
 -   [github-integration-workflow](/docs/real-world-use-cases\github-integration-workflow.md): Documentation for github-integration-workflow.
 ---
@@ -4292,69 +4079,26 @@ The GitHub integration workflow is organized into two main components:
   </Folder>
 </Folder>
 
-<Tabs
-  items={[
-    "issue-webhook",
-    "issue-classifier",
-    "label-assigner",
-    "assignee-selector",
-  ]}
->
-  <GitHubWorkflowTab
-    tab="issue-webhook"
-    value="github-webhook"
-    folder="issue-triage"
-  />
-  <GitHubWorkflowTab
-    tab="issue-classifier"
-    value="issue-classifier"
-    folder="issue-triage"
-  />
-  <GitHubWorkflowTab
-    tab="label-assigner"
-    value="label-assigner"
-    folder="issue-triage"
-  />
-  <GitHubWorkflowTab
-    tab="assignee-selector"
-    value="assignee-selector"
-    folder="issue-triage"
-  />
+<Tabs items={['issue-webhook', 'issue-classifier', 'label-assigner', 'assignee-selector']}>
+  <GitHubWorkflowTab tab="issue-webhook" value="github-webhook" folder="issue-triage" />
+  <GitHubWorkflowTab tab="issue-classifier" value="issue-classifier" folder="issue-triage" />
+  <GitHubWorkflowTab tab="label-assigner" value="label-assigner" folder="issue-triage" />
+  <GitHubWorkflowTab tab="assignee-selector" value="assignee-selector" folder="issue-triage" />
 </Tabs>
 
-<Tabs items={["pr-webhook", "pr-classifier", "pr-reviewer", "pr-monitor"]}>
-  <GitHubWorkflowTab
-    tab="pr-webhook"
-    value="pr-webhook"
-    folder="pr-classifier"
-  />
-  <GitHubWorkflowTab
-    tab="pr-classifier"
-    value="pr-classifier"
-    folder="pr-classifier"
-  />
-  <GitHubWorkflowTab
-    tab="pr-reviewer"
-    value="pr-reviewer-assigner"
-    folder="pr-classifier"
-  />
-  <GitHubWorkflowTab
-    tab="pr-monitor"
-    value="pr-test-monitor"
-    folder="pr-classifier"
-  />
+<Tabs items={['pr-webhook', 'pr-classifier', 'pr-reviewer', 'pr-monitor']}>
+  <GitHubWorkflowTab tab="pr-webhook" value="pr-webhook" folder="pr-classifier" />
+  <GitHubWorkflowTab tab="pr-classifier" value="pr-classifier" folder="pr-classifier" />
+  <GitHubWorkflowTab tab="pr-reviewer" value="pr-reviewer-assigner" folder="pr-classifier" />
+  <GitHubWorkflowTab tab="pr-monitor" value="pr-test-monitor" folder="pr-classifier" />
 </Tabs>
 
 ## Visual Overview
 
 Here's how the automation flow works:
 
-<div className="my-8">
-  ![Flow: GitHub Issue Workflow](../img/github-issue-workflow.png)
-</div>
-<div className="my-8">
-  ![Flow: GitHub PR Workflow](../img/github-pr-workflow.png)
-</div>
+<div className="my-8">![Flow: GitHub Issue Workflow](../img/github-issue-workflow.png)</div>
+<div className="my-8">![Flow: GitHub PR Workflow](../img/github-pr-workflow.png)</div>
 
 1. **Webhook Reception** → Captures GitHub events
 2. **Issue/PR Classification** → Analyzes content with AI
@@ -4427,11 +4171,9 @@ npm run dev
 </Steps>
 
 <Callout type="info">
-  For more detailed setup instructions and configuration options, check out the
-  [full
+  For more detailed setup instructions and configuration options, check out the [full
   documentation](https://github.com/MotiaDev/motia-examples/tree/main/examples/github-integration-workflow).
-</Callout>{" "}
-
+</Callout> 
 
 
 ## Use Cases
@@ -4477,69 +4219,26 @@ The GitHub integration workflow is organized into two main components:
   </Folder>
 </Folder>
 
-<Tabs
-  items={[
-    "issue-webhook",
-    "issue-classifier",
-    "label-assigner",
-    "assignee-selector",
-  ]}
->
-  <GitHubWorkflowTab
-    tab="issue-webhook"
-    value="github-webhook"
-    folder="issue-triage"
-  />
-  <GitHubWorkflowTab
-    tab="issue-classifier"
-    value="issue-classifier"
-    folder="issue-triage"
-  />
-  <GitHubWorkflowTab
-    tab="label-assigner"
-    value="label-assigner"
-    folder="issue-triage"
-  />
-  <GitHubWorkflowTab
-    tab="assignee-selector"
-    value="assignee-selector"
-    folder="issue-triage"
-  />
+<Tabs items={['issue-webhook', 'issue-classifier', 'label-assigner', 'assignee-selector']}>
+  <GitHubWorkflowTab tab="issue-webhook" value="github-webhook" folder="issue-triage" />
+  <GitHubWorkflowTab tab="issue-classifier" value="issue-classifier" folder="issue-triage" />
+  <GitHubWorkflowTab tab="label-assigner" value="label-assigner" folder="issue-triage" />
+  <GitHubWorkflowTab tab="assignee-selector" value="assignee-selector" folder="issue-triage" />
 </Tabs>
 
-<Tabs items={["pr-webhook", "pr-classifier", "pr-reviewer", "pr-monitor"]}>
-  <GitHubWorkflowTab
-    tab="pr-webhook"
-    value="pr-webhook"
-    folder="pr-classifier"
-  />
-  <GitHubWorkflowTab
-    tab="pr-classifier"
-    value="pr-classifier"
-    folder="pr-classifier"
-  />
-  <GitHubWorkflowTab
-    tab="pr-reviewer"
-    value="pr-reviewer-assigner"
-    folder="pr-classifier"
-  />
-  <GitHubWorkflowTab
-    tab="pr-monitor"
-    value="pr-test-monitor"
-    folder="pr-classifier"
-  />
+<Tabs items={['pr-webhook', 'pr-classifier', 'pr-reviewer', 'pr-monitor']}>
+  <GitHubWorkflowTab tab="pr-webhook" value="pr-webhook" folder="pr-classifier" />
+  <GitHubWorkflowTab tab="pr-classifier" value="pr-classifier" folder="pr-classifier" />
+  <GitHubWorkflowTab tab="pr-reviewer" value="pr-reviewer-assigner" folder="pr-classifier" />
+  <GitHubWorkflowTab tab="pr-monitor" value="pr-test-monitor" folder="pr-classifier" />
 </Tabs>
 
 ## Visual Overview
 
 Here's how the automation flow works:
 
-<div className="my-8">
-  ![Flow: GitHub Issue Workflow](../img/github-issue-workflow.png)
-</div>
-<div className="my-8">
-  ![Flow: GitHub PR Workflow](../img/github-pr-workflow.png)
-</div>
+<div className="my-8">![Flow: GitHub Issue Workflow](../img/github-issue-workflow.png)</div>
+<div className="my-8">![Flow: GitHub PR Workflow](../img/github-pr-workflow.png)</div>
 
 1. **Webhook Reception** → Captures GitHub events
 2. **Issue/PR Classification** → Analyzes content with AI
@@ -4612,11 +4311,9 @@ npm run dev
 </Steps>
 
 <Callout type="info">
-  For more detailed setup instructions and configuration options, check out the
-  [full
+  For more detailed setup instructions and configuration options, check out the [full
   documentation](https://github.com/MotiaDev/motia-examples/tree/main/examples/github-integration-workflow).
-</Callout>{" "}
-
+</Callout> 
 
 -   [gmail-automation](/docs/real-world-use-cases\gmail-automation.md): Documentation for gmail-automation.
 ---
@@ -5340,7 +5037,7 @@ title: RAG Agent using Docling and Weaviate
 description: An LLM chat-like question-answering system with RAG (Retrieval-Augmented Generation) to provide accurate answers from PDF documents. The system leverages Docling to parse and intelligently chunk PDF documents, Weaviate as a vector database to store vectorized chunks, and OpenAI for embeddings and text generation.
 ---
 
-import { CodeFetcher } from "../../../components/CodeFetcher";
+import { CodeFetcher } from '../../../components/CodeFetcher'
 
 ## Let's build a PDF RAG Agent with:
 
@@ -5360,41 +5057,12 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
   <File name="process-pdfs.step.py" />
 </Folder>
 
-<Tabs
-  items={[
-    "api-process-pdfs",
-    "api-query-rag",
-    "init-weaviate",
-    "load-weaviate",
-    "process-pdfs",
-  ]}
->
-  <CodeFetcher
-    path="examples/rag-docling-weaviate-agent/steps/api-steps"
-    tab="api-process-pdfs"
-    value="api-process-pdfs"
-  />
-  <CodeFetcher
-    path="examples/rag-docling-weaviate-agent/steps/api-steps"
-    tab="api-query-rag"
-    value="api-query-rag"
-  />
-  <CodeFetcher
-    path="examples/rag-docling-weaviate-agent/steps/event-steps"
-    tab="init-weaviate"
-    value="init-weaviate"
-  />
-  <CodeFetcher
-    path="examples/rag-docling-weaviate-agent/steps/event-steps"
-    tab="load-weaviate"
-    value="load-weaviate"
-  />
-  <CodeFetcher
-    path="examples/rag-docling-weaviate-agent/steps/event-steps"
-    tab="process-pdfs"
-    value="process-pdfs"
-    fileExtension="py"
-  />
+<Tabs items={['api-process-pdfs', 'api-query-rag', 'init-weaviate', 'load-weaviate', 'process-pdfs']}>
+  <CodeFetcher path="examples/rag-docling-weaviate-agent/steps/api-steps" tab="api-process-pdfs" value="api-process-pdfs" />
+  <CodeFetcher path="examples/rag-docling-weaviate-agent/steps/api-steps" tab="api-query-rag" value="api-query-rag" />
+  <CodeFetcher path="examples/rag-docling-weaviate-agent/steps/event-steps" tab="init-weaviate" value="init-weaviate" />
+  <CodeFetcher path="examples/rag-docling-weaviate-agent/steps/event-steps" tab="load-weaviate" value="load-weaviate" />
+  <CodeFetcher path="examples/rag-docling-weaviate-agent/steps/event-steps" tab="process-pdfs" value="process-pdfs" fileExtension="py" />
 </Tabs>
 
 ## 🚀 Features
@@ -5416,14 +5084,12 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
 ## 🛠️ Installation
 
 1. Clone the repository:
-
    ```bash
    git clone https://github.com/MotiaDev/motia-examples
    cd examples/rag-docling-weaviate-agent
    ```
 
 2. Install dependencies:
-
    ```bash
    pnpm install
    # or
@@ -5431,13 +5097,11 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
    ```
 
 3. Configure environment variables:
-
    ```bash
    cp .env.example .env
    ```
 
    Update `.env` with your API keys:
-
    ```bash
    # Required
    OPENAI_API_KEY=your-openai-api-key-here
@@ -5471,7 +5135,6 @@ Content-Type: application/json
 ```
 
 Response:
-
 ```json
 {
   "message": "PDF processing workflow started",
@@ -5492,7 +5155,6 @@ Content-Type: application/json
 ```
 
 Response:
-
 ```json
 {
   "query": "Your question about the PDF content",
@@ -5512,7 +5174,6 @@ Response:
 ```
 
 Error Response:
-
 ```json
 {
   "error": "Failed to process RAG query",
@@ -5523,19 +5184,16 @@ Error Response:
 ## 🏃‍♂️ Running the Application
 
 1. Start the development server:
-
    ```bash
    pnpm dev
    ```
 
 2. Access the Motia Workbench:
-
    ```
    http://localhost:3000
    ```
 
 3. Make test requests:
-
    ```bash
    # Process PDFs
    curl --request POST \
@@ -5554,13 +5212,12 @@ Error Response:
       "limit": 5
    }'
    ```
-
 ## 🙏 Acknowledgments
 
 - [Motia Framework](https://motia.dev) for the event-driven workflow engine
 - [Docling](https://github.com/MotiaDev/docling) for PDF parsing and hybrid chunking
 - [Weaviate](https://www.weaviate.io/) for Vector Database
-- [OpenAI](https://platform.openai.com/) for AI analysis
+- [OpenAI](https://platform.openai.com/) for AI analysis 
 
 
 
@@ -5571,7 +5228,7 @@ title: RAG Agent using Docling and Weaviate
 description: An LLM chat-like question-answering system with RAG (Retrieval-Augmented Generation) to provide accurate answers from PDF documents. The system leverages Docling to parse and intelligently chunk PDF documents, Weaviate as a vector database to store vectorized chunks, and OpenAI for embeddings and text generation.
 ---
 
-import { CodeFetcher } from "../../../components/CodeFetcher";
+import { CodeFetcher } from '../../../components/CodeFetcher'
 
 ## Let's build a PDF RAG Agent with:
 
@@ -5591,41 +5248,12 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
   <File name="process-pdfs.step.py" />
 </Folder>
 
-<Tabs
-  items={[
-    "api-process-pdfs",
-    "api-query-rag",
-    "init-weaviate",
-    "load-weaviate",
-    "process-pdfs",
-  ]}
->
-  <CodeFetcher
-    path="examples/rag-docling-weaviate-agent/steps/api-steps"
-    tab="api-process-pdfs"
-    value="api-process-pdfs"
-  />
-  <CodeFetcher
-    path="examples/rag-docling-weaviate-agent/steps/api-steps"
-    tab="api-query-rag"
-    value="api-query-rag"
-  />
-  <CodeFetcher
-    path="examples/rag-docling-weaviate-agent/steps/event-steps"
-    tab="init-weaviate"
-    value="init-weaviate"
-  />
-  <CodeFetcher
-    path="examples/rag-docling-weaviate-agent/steps/event-steps"
-    tab="load-weaviate"
-    value="load-weaviate"
-  />
-  <CodeFetcher
-    path="examples/rag-docling-weaviate-agent/steps/event-steps"
-    tab="process-pdfs"
-    value="process-pdfs"
-    fileExtension="py"
-  />
+<Tabs items={['api-process-pdfs', 'api-query-rag', 'init-weaviate', 'load-weaviate', 'process-pdfs']}>
+  <CodeFetcher path="examples/rag-docling-weaviate-agent/steps/api-steps" tab="api-process-pdfs" value="api-process-pdfs" />
+  <CodeFetcher path="examples/rag-docling-weaviate-agent/steps/api-steps" tab="api-query-rag" value="api-query-rag" />
+  <CodeFetcher path="examples/rag-docling-weaviate-agent/steps/event-steps" tab="init-weaviate" value="init-weaviate" />
+  <CodeFetcher path="examples/rag-docling-weaviate-agent/steps/event-steps" tab="load-weaviate" value="load-weaviate" />
+  <CodeFetcher path="examples/rag-docling-weaviate-agent/steps/event-steps" tab="process-pdfs" value="process-pdfs" fileExtension="py" />
 </Tabs>
 
 ## 🚀 Features
@@ -5647,14 +5275,12 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
 ## 🛠️ Installation
 
 1. Clone the repository:
-
    ```bash
    git clone https://github.com/MotiaDev/motia-examples
    cd examples/rag-docling-weaviate-agent
    ```
 
 2. Install dependencies:
-
    ```bash
    pnpm install
    # or
@@ -5662,13 +5288,11 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
    ```
 
 3. Configure environment variables:
-
    ```bash
    cp .env.example .env
    ```
 
    Update `.env` with your API keys:
-
    ```bash
    # Required
    OPENAI_API_KEY=your-openai-api-key-here
@@ -5702,7 +5326,6 @@ Content-Type: application/json
 ```
 
 Response:
-
 ```json
 {
   "message": "PDF processing workflow started",
@@ -5723,7 +5346,6 @@ Content-Type: application/json
 ```
 
 Response:
-
 ```json
 {
   "query": "Your question about the PDF content",
@@ -5743,7 +5365,6 @@ Response:
 ```
 
 Error Response:
-
 ```json
 {
   "error": "Failed to process RAG query",
@@ -5754,19 +5375,16 @@ Error Response:
 ## 🏃‍♂️ Running the Application
 
 1. Start the development server:
-
    ```bash
    pnpm dev
    ```
 
 2. Access the Motia Workbench:
-
    ```
    http://localhost:3000
    ```
 
 3. Make test requests:
-
    ```bash
    # Process PDFs
    curl --request POST \
@@ -5785,13 +5403,12 @@ Error Response:
       "limit": 5
    }'
    ```
-
 ## 🙏 Acknowledgments
 
 - [Motia Framework](https://motia.dev) for the event-driven workflow engine
 - [Docling](https://github.com/MotiaDev/docling) for PDF parsing and hybrid chunking
 - [Weaviate](https://www.weaviate.io/) for Vector Database
-- [OpenAI](https://platform.openai.com/) for AI analysis
+- [OpenAI](https://platform.openai.com/) for AI analysis 
 
 
 -   [trello-automation](/docs/real-world-use-cases\trello-automation.md): Documentation for trello-automation.
@@ -5800,10 +5417,7 @@ title: Trello Card Automation
 description: Build an automated card progression system for Trello boards with AI-powered summaries
 ---
 
-import {
-  TrelloTab,
-  TrelloCodeContent,
-} from "../../../components/TrelloCodeFetcher";
+import { TrelloTab, TrelloCodeContent } from '../../../components/TrelloCodeFetcher'
 
 ## Let's build a Trello automation system that:
 
@@ -5835,18 +5449,7 @@ The Trello board is organized into four main lists:
   <File name="slack-notifier.step.ts" />
 </Folder>
 
-<Tabs
-  items={[
-    "webhook",
-    "validation",
-    "requirements",
-    "assigned",
-    "review",
-    "completion",
-    "overdue",
-    "slack",
-  ]}
->
+<Tabs items={['webhook', 'validation', 'requirements', 'assigned', 'review', 'completion', 'overdue', 'slack']}>
   <TrelloTab tab="webhook" value="trello-webhook" />
   <TrelloTab tab="validation" value="trello-webhook-validation" />
   <TrelloTab tab="requirements" value="validate-card-requirements" />
@@ -5861,9 +5464,7 @@ The Trello board is organized into four main lists:
 
 Here's how the automation flow works:
 
-<div className="my-8">
-  ![Flow: Trello Automation Steps](../img/trello-automation.png)
-</div>
+<div className="my-8">![Flow: Trello Automation Steps](../img/trello-automation.png)</div>
 
 1. **Card Validation** → Checks for required information
 2. **Progress Tracking** → Moves cards between lists
@@ -5949,10 +5550,9 @@ pnpm dev
 </Steps>
 
 <Callout type="info">
-  For more detailed setup instructions and configuration options, check out the
-  [full
+  For more detailed setup instructions and configuration options, check out the [full
   documentation](https://github.com/MotiaDev/motia-examples/tree/main/examples/trello-flow).
-</Callout>{" "}
+</Callout>{' '}
 
 
 
@@ -5963,10 +5563,7 @@ title: Trello Card Automation
 description: Build an automated card progression system for Trello boards with AI-powered summaries
 ---
 
-import {
-  TrelloTab,
-  TrelloCodeContent,
-} from "../../../components/TrelloCodeFetcher";
+import { TrelloTab, TrelloCodeContent } from '../../../components/TrelloCodeFetcher'
 
 ## Let's build a Trello automation system that:
 
@@ -5998,18 +5595,7 @@ The Trello board is organized into four main lists:
   <File name="slack-notifier.step.ts" />
 </Folder>
 
-<Tabs
-  items={[
-    "webhook",
-    "validation",
-    "requirements",
-    "assigned",
-    "review",
-    "completion",
-    "overdue",
-    "slack",
-  ]}
->
+<Tabs items={['webhook', 'validation', 'requirements', 'assigned', 'review', 'completion', 'overdue', 'slack']}>
   <TrelloTab tab="webhook" value="trello-webhook" />
   <TrelloTab tab="validation" value="trello-webhook-validation" />
   <TrelloTab tab="requirements" value="validate-card-requirements" />
@@ -6024,9 +5610,7 @@ The Trello board is organized into four main lists:
 
 Here's how the automation flow works:
 
-<div className="my-8">
-  ![Flow: Trello Automation Steps](../img/trello-automation.png)
-</div>
+<div className="my-8">![Flow: Trello Automation Steps](../img/trello-automation.png)</div>
 
 1. **Card Validation** → Checks for required information
 2. **Progress Tracking** → Moves cards between lists
@@ -6112,10 +5696,9 @@ pnpm dev
 </Steps>
 
 <Callout type="info">
-  For more detailed setup instructions and configuration options, check out the
-  [full
+  For more detailed setup instructions and configuration options, check out the [full
   documentation](https://github.com/MotiaDev/motia-examples/tree/main/examples/trello-flow).
-</Callout>{" "}
+</Callout>{' '}
 
 
 -   [tldr-motia-in-3-minutes](/docs/tldr-motia-in-3-minutes.md): Documentation for tldr-motia-in-3-minutes.
@@ -6129,7 +5712,7 @@ description: A 3-minute overview of Motia’s core concepts with a business-read
 Got 3 minutes? Here’s the scoop on Motia—a code-first framework that powers event-driven workflows, perfect for Generative AI (GenAI). We’ll spotlight a real-world win: analyzing customer feedback.
 
 ## What’s Motia?
-Motia builds scalable, observable workflows without infrastructure headaches. Code in JS, TS, Python, or Ruby, chain it up, and track it live in a visual Workbench.
+Motia builds scalable, observable workflows without infrastructure headaches. Code in JS, TS, or Python, chain it up, and track it live in a visual Workbench.
 
 - **Why It’s Clutch**: No queue setup, instant APIs/scheduling, real-time insights.
 - **Who’s It For**: Businesses wanting intelligent workflows without the hassle.
@@ -6180,7 +5763,7 @@ Motia is built with the developer in mind, offering a unique blend of simplicity
 
 - 🚀 **Zero Infrastructure Setup:** Say goodbye to the complexities of message queues and event brokers! Motia handles the underlying infrastructure, allowing you to focus solely on building your workflows.
 
-- 🔌 **Plug-and-Play Steps in Your Language:**  Develop your workflow logic using the languages you love: JavaScript, TypeScript, Python, and Ruby. Mix and match languages within the same flow for ultimate flexibility.
+- 🔌 **Plug-and-Play Steps in Your Language:**  Develop your workflow logic using the languages you love: JavaScript, TypeScript, and Python. Mix and match languages within the same flow for ultimate flexibility.
 
 - 📊 **Built-in Observability:** Gain deep insights into your workflows with real-time logs, traces, and interactive flow visualizations right in the Motia Workbench. Debugging and monitoring have never been easier.
 
@@ -6690,34 +6273,16 @@ Motia Workbench is a development platform that helps you build and debug your Mo
 
 Start workbench by running:
 
-<Tabs items={['pnpm', 'yarn', 'npm', 'bun']}>
-   <Tab value='pnpm'>
-   ```bash
-   pnpm run dev
-   ```
-   </Tab>
-   <Tab value='yarn'>
-   ```bash
-   yarn run dev
-   ```
-   </Tab>
-   <Tab value='npm'>
-   ```bash
-   npm run dev
-   ```
-   </Tab>
-   <Tab value='bun'>
-   ```bash
-   bun run dev
-   ```
-   </Tab>
+<Tabs items={['npm', 'yarn', 'pnpm', 'bun']}>
+  <Tab value="pnpm">```pnpm run dev ```</Tab>
+  <Tab value="yarn">```yarn run dev ```</Tab>
+  <Tab value="npm">```npm run dev ```</Tab>
+  <Tab value="bun">```bun run dev ```</Tab>
 </Tabs>
 
 <Callout>
-Running the dev command starts:
-- **Motia Server**: Backend services and API endpoints
-- **Motia Workbench**: Web interface at http://localhost:3000
-- **Development Mode**: Auto-reloads when changes are made
+  Running the dev command starts: - **Motia Server**: Backend services and API endpoints - **Motia Workbench**: Web
+  interface at http://localhost:3000 - **Development Mode**: Auto-reloads when changes are made
 </Callout>
 
 ## Key Features
@@ -6732,23 +6297,15 @@ Running the dev command starts:
   - Click any step to see its details
   </Step>
 
-  <Step>
-  ### Real-time Testing
-  Test your flows directly in the interface:
-  - Send test requests to API endpoints
-  - Monitor how events flow through steps
-  - Visualize step sequence execution
-  - Inspect data at each stage
-  </Step>
+<Step>
+  ### Real-time Testing Test your flows directly in the interface: - Send test requests to API endpoints - Monitor how
+  events flow through steps - Visualize step sequence execution - Inspect data at each stage
+</Step>
 
-  <Step>
-  ### Live Logs
-  Monitor your flow execution:
-  ```
-  [INFO] [payment-flow] Payment received: $50.00
-  [DEBUG] [payment-flow] Processing payment...
-  ```
-  </Step>
+<Step>
+  ### Live Logs Monitor your flow execution: ``` [INFO] [payment-flow] Payment received: $50.00 [DEBUG] [payment-flow]
+  Processing payment... ```
+</Step>
 
   <Step>
    ### Development Tools
@@ -6765,6 +6322,7 @@ Motia Workbench allows you to customize how your steps appear in the Workbench f
 ### NOOP Steps
 
 NOOP (No Operation) steps represent virtual points in your flow where external actions occur:
+
 - Human approvals or reviews
 - Webhook callbacks
 - External system integrations
@@ -6775,23 +6333,26 @@ These steps help visualize important external touchpoints without implementing a
 ### UI Steps
 
 UI steps allow you to customize how your steps appear in the Workbench visualization:
+
 - Override the default layout of Event steps
 - Customize API endpoint representations
 - Modify how Cron jobs are displayed
 - Add custom icons and styling
 
-<Breadcrumb items={[{
-  name: 'UI Steps',
-  url: '/docs/workbench/ui-steps'
-},{
-  name: 'NOOP Steps',
-  url: '/docs/workbench/noop-steps'
-}]} />
+<Breadcrumb
+  items={[
+    {
+      name: 'UI Steps',
+      url: '/docs/workbench/ui-steps',
+    },
+    {
+      name: 'NOOP Steps',
+      url: '/docs/workbench/noop-steps',
+    },
+  ]}
+/>
 
-<Callout>
-New to Motia? Follow the **[quick start](/docs/getting-started/quick-start)** guide to get set up.
-</Callout>
-
+<Callout>New to Motia? Follow the **[quick start](/docs/getting-started/quick-start)** guide to get set up.</Callout>
 
 
 -   [UI Steps](/docs/workbench\ui-steps.md): Documentation for UI Steps.
@@ -6799,7 +6360,7 @@ New to Motia? Follow the **[quick start](/docs/getting-started/quick-start)** gu
 title: UI Steps
 ---
 
-UI Steps provide a powerful way to create custom, visually appealing representations of your workflow steps in the Workbench flow visualization tool. 
+UI Steps provide a powerful way to create custom, visually appealing representations of your workflow steps in the Workbench flow visualization tool.
 
 With UI Steps, you can enhance the user experience by designing intuitive, context-aware visual components that clearly communicate your flow's sequencing and events.
 
@@ -6809,9 +6370,9 @@ To create a custom UI for a step, create a `.tsx` or `.jsx` file next to your st
 
 <Tabs items={['tsx', 'jsx']}>
   <Tab value="tsx">
-    ```
-    steps/
-      └── myStep/
+    ``` 
+    steps/ 
+    └── myStep/ 
       ├── myStep.step.ts      # Step definition
       └── myStep.step.tsx     # Visual override
     ```
@@ -6828,43 +6389,59 @@ To create a custom UI for a step, create a `.tsx` or `.jsx` file next to your st
 
 ## Basic Usage
 
+Let's override an EventNode but keeping the same look. Like the image below.
+We're going to add an image on the side and show the description.
+
+![Custom Event Node](./../img/custom-event-node.png)
+
 <Tabs items={['TypeScript', 'JavaScript']}>
   <Tab>
-    ```typescript
+    ```tsx
     // myStep.step.tsx
 
+    import { EventNode, EventNodeProps } from 'motia/workbench'
     import React from 'react'
-    import { EventNode } from 'motia/workbench'
-    import type { EventNodeProps } from 'motia/workbench'
 
-    export default function MyStep({ data }: EventNodeProps) {
+    export const Node: React.FC<EventNodeProps> = (props) => {
       return (
-        <EventNode
-          data={data}
-          variant="white"
-          className="py-2 px-4"
-        />
+        <EventNode {...props}>
+          <div className="flex flex-row items-start gap-2">
+            <div className="text-sm text-gray-400 font-mono">{props.data.description}</div>
+            <img
+              style={{ width: '64px', height: '64px' }}
+              src="https://www.motia.dev/icon.png"
+            />
+          </div>
+        </EventNode>
       )
     }
     ```
+
   </Tab>
   <Tab>
-    ```javascript
+    ```jsx
     // myStep.step.jsx
 
-    import React from 'react'
     import { EventNode } from 'motia/workbench'
+    import React from 'react'
 
-    export default function MyStep({ data }) {
+    export const Node = (props) => {
       return (
-        <EventNode
-          data={data}
-          variant="white"
-          className="py-2 px-4"
-        />
+        <EventNode {...props}>
+          <div className="flex flex-row items-start gap-2">
+            <div className="text-sm text-gray-400 font-mono">{props.data.description}</div>
+            <img
+              style={{ width: '64px', height: '64px' }}
+              src="https://www.motia.dev/icon.png"
+            />
+          </div>
+        </EventNode>
       )
     }
     ```
+
+    
+
   </Tab>
 </Tabs>
 
@@ -6872,165 +6449,112 @@ To create a custom UI for a step, create a `.tsx` or `.jsx` file next to your st
 
 Motia Workbench provides out of the box components that you can use to create custom UI steps, which apply to different types of steps.
 
-### EventNode
 
-The main component for general-purpose steps.
+| Component   | Props Type     | Description                                                                    |
+| ----------- | -------------- | ------------------------------------------------------------------------------ |
+| EventNode   | EventNodeProps | Base component for Event Steps, with built-in styling and connection points    |
+| ApiNode     | ApiNodeProps   | Component for API Steps, includes request/response visualization capabilities  |
+| CronNode    | CronNodeProps  | Base component for Cron Steps, displays timing information                     |
+| NoopNode    | NoopNodeProps  | Base component for NoopNodes with a different color to comply workbench legend |
 
-| Prop | Type | Description |
-|------|------|-------------|
-| data | `EventNodeProps['data']` | Step data passed from Workbench |
-| variant | `'white' \| 'ghost' \| 'noop'` | Visual style variant |
-| shape | `'rounded' \| 'square' \| 'noop'` | Node shape style |
-| className | `string` | Additional CSS classes |
+## Customizing completely
 
-<Tabs items={['TypeScript', 'JavaScript']}>
-  <Tab>
-    ```typescript
-    // customStep.step.tsx
+You can also fully customize your node making it look completely different from the result.
+Let's draw the following node.
 
-    import React from 'react'
-    import { EventNode } from 'motia/workbench'
-    import type { EventNodeProps } from 'motia/workbench'
+![Custom Ideator Agent Node](./../img/custom-ideator-agent-node.png)
 
-    export default function CustomStep({ data }: EventNodeProps) {
-      return (
-        <EventNode
-          data={data}
-          variant="white"
-          shape="rounded"
-          className="py-2 px-4"
-        >
-          <div>Custom content</div>
-        </EventNode>
-      )
-    }
-    ```
-  </Tab>
-  <Tab>
-    ```javascript
-    // customStep.step.jsx
+```tsx
+import { BaseHandle, EventNodeProps, Position } from 'motia/workbench'
+import React from 'react'
 
-    import React from 'react'
-    import { EventNode } from 'motia/workbench'
+export const Node: React.FC<EventNodeProps> = (props) => {
+  return (
+    <div className="w-80 bg-black text-white rounded-xl p-4">
+      <div className="group relative">
+        <BaseHandle type="target" position={Position.Top} variant="event" />
 
-    export default function CustomStep({ data }) {
-      return (
-        <EventNode
-          data={data}
-          variant="white"
-          shape="rounded"
-          className="py-2 px-4"
-        >
-          <div>Custom content</div>
-        </EventNode>
-      )
-    }
-    ```
-  </Tab>
-</Tabs>
+        <div className="flex items-center space-x-3">
+          <img className="w-8 h-8" src="https://cdn-icons-png.flaticon.com/512/12222/12222588.png" />
+          <div className="text-lg font-semibold">{props.data.name}</div>
+        </div>
 
-<Callout type="info">
-The `EventNodeProps` type provides essential information about your step. Here are the key properties:
+        <div className="mt-2 text-sm font-medium text-gray-300">{props.data.description}</div>
 
-| Property | Type | Description |
-|----------|------|-------------|
-| type | `string` | The type of the step |
-| name | `string` | The name of the step |
-| description | `string` | A detailed description of the step |
-| subscribes | `string[]` | List of topics this step listens to |
-| emits | `string[]` | List of topics this step emits |
-| language | `string` | The programming language used |
+        <div className="mt-3 flex flex-col gap-2 border border-gray-800 border-solid p-2 rounded-md w-full">
+          <div className="flex items-center text-xs text-gray-400 space-x-2">Input</div>
+          <div className="flex flex-col gap-2 whitespace-pre-wrap font-mono">
+            <div className="flex items-center gap-2">
+              <div className="">contentIdea:</div>
+              <div className="text-orange-500">string</div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="">contentType:</div>
+              <div className="text-orange-500">string</div>
+            </div>
+          </div>
+        </div>
 
-</Callout>
+        <div className="mt-3 flex flex-col gap-2 border border-gray-800 border-solid p-2 rounded-md w-full">
+          <div className="flex items-center text-xs text-gray-400 space-x-2">Output</div>
+          <div className="flex flex-col gap-2 whitespace-pre-wrap font-mono">
+            <div className="flex items-center gap-2">
+              <div className="">topic:</div>
+              <div className="text-orange-500">string</div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="">subtopics:</div>
+              <div className="text-orange-500">string[]</div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="">keywords:</div>
+              <div className="text-orange-500">string[]</div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="">tone:</div>
+              <div className="text-orange-500">string</div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="">audience:</div>
+              <div className="text-orange-500">string</div>
+            </div>
+          </div>
+        </div>
 
-### ApiNode
+        <BaseHandle type="source" position={Position.Bottom} variant="event" />
+      </div>
+    </div>
+  )
+}
+```
 
-Specialized component for API-related steps.
+### Important Notes
 
-| Prop | Type | Description |
-|------|------|-------------|
-| data | `ApiNodeProps['data']` | API step data |
-| className | `string` | Additional CSS classes |
+- You will need to add `<BaseHandle>` to your node, otherwize it won't show the connectors.
+- If your node has padding, make sure to add a group inside your node with class `group relative` so the handles can be correctly positioned.
 
-<Tabs items={['TypeScript', 'JavaScript']}>
-  <Tab>
-    ```typescript
-    // apiStep.step.tsx
-
-    import React from 'react'
-    import { ApiNode } from 'motia/workbench'
-    import type { ApiNodeProps } from 'motia/workbench'
-
-    export default function ApiStep({ data }: ApiNodeProps) {
-      return (
-        <ApiNode
-          data={data}
-          className="border-blue-500"
-        >
-          <div>API endpoint: {data.name}</div>
-        </ApiNode>
-      )
-    }
-    ```
-  </Tab>
-  <Tab>
-    ```javascript
-    // apiStep.step.jsx
-
-    import React from 'react'
-    import { ApiNode } from 'motia/workbench'
-
-    export default function ApiStep({ data }) {
-      return (
-        <ApiNode
-          data={data}
-          className="border-blue-500"
-        >
-          <div>API endpoint: {data.name}</div>
-        </ApiNode>
-      )
-    }
-    ```
-  </Tab>
-</Tabs>
-
-<Callout type="info">
-The `ApiNodeProps` type provides essential information about your step. Here are the key properties:
-
-| Property | Type | Description |
-|----------|------|-------------|
-| type | `string` | The type of the step |
-| name | `string` | The name of the step |
-| description | `string` | A detailed description of the step |
-| emits | `string[]` | List of topics this step emits |
-| subscribes | `string[]` | List of topics this step listens to |
-| webhookUrl | `string` | The URL of the webhook |
-| bodySchema | `JSONSchema7` | The schema of the body of the request |
-
-</Callout>
+<Callout type="info">Feel free to create your own custom components and reuse across multiple notes.</Callout>
 
 ## Styling Guidelines
 
-| Guideline | Description |
-|-----------|-------------|
-| Use Tailwind's utility classes only | Stick to Tailwind CSS utilities for consistent styling |
-| Avoid arbitrary values | Use predefined scales from the design system |
-| Keep components responsive | Ensure UI elements adapt well to different screen sizes |
-| Follow Motia's design system | Maintain consistency with Motia's established design patterns |
+| Guideline                           | Description                                                   |
+| ----------------------------------- | ------------------------------------------------------------- |
+| Use Tailwind's utility classes only | Stick to Tailwind CSS utilities for consistent styling        |
+| Avoid arbitrary values              | Use predefined scales from the design system                  |
+| Keep components responsive          | Ensure UI elements adapt well to different screen sizes       |
+| Follow Motia's design system        | Maintain consistency with Motia's established design patterns |
 
-<Callout type="info">
-  Custom styles should be minimal and consistent with the overall Workbench UI.
-</Callout>
+
 
 ## Best Practices
 
-| Practice | Description |
-|----------|-------------|
-| Use base components | Use `EventNode` and `ApiNode` when possible |
-| Keep it simple | Maintain simple and clear visualizations |
-| Optimize performance | Minimize state and computations |
-| Documentation | Document custom components and patterns |
-| Style sharing | Share common styles through utility classes |
+| Practice             | Description                                 |
+| -------------------- | ------------------------------------------- |
+| Use base components  | Use `EventNode` and `ApiNode` when possible |
+| Keep it simple       | Maintain simple and clear visualizations    |
+| Optimize performance | Minimize state and computations             |
+| Documentation        | Document custom components and patterns     |
+| Style sharing        | Share common styles through utility classes |
 
 
 

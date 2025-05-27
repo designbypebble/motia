@@ -23,12 +23,142 @@ The following properties are specific to the API Step, in addition to the [commo
         'Schema for validating the request body. For TypeScript/JavaScript steps, it uses zod schemas. For Python steps, it uses Pydantic models.',
       type: 'object',
     },
+    responseSchema: {
+      description:
+        'Mostly used for documentation, the expected output of an API endpoint. For TypeScript/JavaScript steps, it uses zod schemas. For Python steps, it uses Pydantic models or Dict Json Schema.',
+      type: 'object',
+    },
+    queryParams: {
+      description: 'Mostly for documentation, the expected query params',
+      type: 'array',
+    },
     middleware: {
       description: 'Optional middleware functions to run before the handler',
       type: 'array',
     },
   }}
 />
+
+## Defining an API Step
+
+<Tabs items={['TypeScript', 'JavaScript', 'Python']}>
+  <Tab value="TypeScript">
+    ```typescript
+    import { ApiRouteConfig, Handlers } from 'motia'
+    import { z } from 'zod'
+
+    export const config: ApiRouteConfig = {
+      type: 'api',
+      name: 'GetMessage',
+      description: 'Retrieves a generated message from OpenAI based on the Trace ID returned by the POST /openai endpoint',
+      path: '/openai/:traceId',
+      method: 'GET',
+      emits: ['call-openai'],
+      flows: ['openai'],
+      responseSchema: {
+        // When response code is 200
+        200: z.object({ message: z.string({ description: 'The message from OpenAI' }) }),
+        // When response code is 400
+        400: z.object({ message: z.string({ description: 'The error message' }) })
+      },
+      queryParams: [
+        {
+          name: 'includeProps',
+          description: 'Whether to include the properties of the message',
+        },
+      ],
+    }
+
+    export const handler: Handlers['GetMessage'] = async (req, { logger }) => {
+      logger.info('[Call OpenAI] Received callOpenAi event', req)
+
+      return {
+        status: 200,
+        body: { message: 'OpenAI response sent' },
+      }
+    }
+    ```
+
+  </Tab>
+  <Tab value="JavaScript">
+    ```typescript
+    const { z } = require('zod')
+
+    export const config = {
+      type: 'api',
+      name: 'Get Message by Trace ID',
+      description: 'Retrieves a generated message from OpenAI based on the Trace ID returned by the POST /openai endpoint',
+      path: '/openai/:traceId',
+      method: 'GET',
+      emits: ['call-openai'],
+      flows: ['openai'],
+      responseSchema: {
+        // When response code is 200
+        200: z.object({ message: z.string({ description: 'The message from OpenAI' }) }),
+        // When response code is 400
+        400: z.object({ message: z.string({ description: 'The error message' }) })
+      },
+      queryParams: [
+        {
+          name: 'includeProps',
+          description: 'Whether to include the properties of the message',
+        },
+      ],
+    }
+
+    export const handler = async (req, { logger }) => {
+      logger.info('[Call OpenAI] Received callOpenAi event', req)
+
+      return {
+        status: 200,
+        body: { message: 'OpenAI response sent' },
+      }
+    }
+    ```
+
+  </Tab>
+  <Tab value="Python">
+    ```python
+    from pydantic import BaseModel
+    
+    # Define a Pydantic model for request body validation
+    class RequestBody(BaseModel):
+        message: str
+
+    config = {
+      "type": "api",
+      "name": "Get Message by Trace ID",
+      "description": "Retrieves a generated message from OpenAI based on the Trace ID returned by the POST /openai endpoint",
+      "path": "/openai/:traceId",
+      "method": "GET",
+      "emits": ["call-openai"],
+      "flows": ["openai"],
+      "responseSchema": {
+        "200": RequestBody.model_json_schema()
+      },
+      "queryParams": [
+        {
+          "name": "includeProps",
+          "description": "Whether to include the properties of the message",
+        },
+      ],
+    }
+
+    async def handler(req, context):
+      context.logger.info("[Call OpenAI] Received callOpenAi event", {"body": req.get("body")})
+
+      return {
+        "status": 200,
+        "body": { "message": "OpenAI response sent" },
+      }
+    ```
+
+  </Tab>
+</Tabs>
+
+This should create an endpoint that can be viewed and requested from Workbench UI.
+
+![Endpoint Visualization in Workbench](../../img/endpoints.png)
 
 The following examples showcase how to configure an **API Step**
 
@@ -190,15 +320,15 @@ const rateLimiterMiddleware: ApiMiddleware = (() => {
 })()
 ```
 
-<Tabs items={['TypeScript', 'JavaScript', 'Python', 'Ruby']}>
+<Tabs items={['TypeScript', 'JavaScript', 'Python']}>
   <Tab value="TypeScript">
     ```typescript
-      import { ApiRouteConfig, StepHandler } from 'motia'
+      import { ApiRouteConfig, Handlers } from 'motia'
       import { z } from 'zod'
 
       export const config: ApiRouteConfig = {
         type: 'api',
-        name: 'Test state api trigger',
+        name: 'TestStateApiTrigger',
         description: 'test state',
         path: '/test-state',
         method: 'POST',
@@ -207,7 +337,7 @@ const rateLimiterMiddleware: ApiMiddleware = (() => {
         flows: ['test-state'],
       }
 
-      export const handler: StepHandler<typeof config> = async (req, { logger, emit }) => {
+      export const handler: Handlers['TestStateApiTrigger'] = async (req, { logger, emit }) => {
         logger.info('[Test State] Received request', req)
 
         await emit({
@@ -362,34 +492,6 @@ const rateLimiterMiddleware: ApiMiddleware = (() => {
             'status': 200,
             'body': {'message': 'Success'}
         }
-    ```
-
-  </Tab>
-  <Tab value="Ruby">
-    ```ruby
-    def config
-      {
-        type: 'api',
-        name: 'Test state api trigger',
-        description: 'test state',
-        path: '/test-state',
-        method: 'POST',
-        emits: ['test-state'],
-        flows: ['test-state']
-      }
-    end
-
-    def handler(req, ctx)
-      ctx.emit({
-        "topic" => "test-state",
-        "data" => req.body
-      })
-
-      {
-        "status" => 200,
-        "body" => { "message" => "Success" }
-      }
-    end
     ```
 
   </Tab>

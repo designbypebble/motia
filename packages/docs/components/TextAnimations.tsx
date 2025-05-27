@@ -41,8 +41,8 @@ export const TextAppearBlur: React.FC<TextAppearBlurProps> = ({ children, delay 
   return (
     <motion.span variants={variants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }}>
       {words?.map((word, index) => (
-        <motion.span key={index} variants={wordVariant} className="mr-[4px] inline-block">
-          {word}
+        <motion.span key={index} variants={wordVariant} className="inline-block">
+          {word.replace(word, `${word} `)}
         </motion.span>
       ))}
     </motion.span>

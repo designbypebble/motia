@@ -39,69 +39,26 @@ The GitHub integration workflow is organized into two main components:
   </Folder>
 </Folder>
 
-<Tabs
-  items={[
-    "issue-webhook",
-    "issue-classifier",
-    "label-assigner",
-    "assignee-selector",
-  ]}
->
-  <GitHubWorkflowTab
-    tab="issue-webhook"
-    value="github-webhook"
-    folder="issue-triage"
-  />
-  <GitHubWorkflowTab
-    tab="issue-classifier"
-    value="issue-classifier"
-    folder="issue-triage"
-  />
-  <GitHubWorkflowTab
-    tab="label-assigner"
-    value="label-assigner"
-    folder="issue-triage"
-  />
-  <GitHubWorkflowTab
-    tab="assignee-selector"
-    value="assignee-selector"
-    folder="issue-triage"
-  />
+<Tabs items={['issue-webhook', 'issue-classifier', 'label-assigner', 'assignee-selector']}>
+  <GitHubWorkflowTab tab="issue-webhook" value="github-webhook" folder="issue-triage" />
+  <GitHubWorkflowTab tab="issue-classifier" value="issue-classifier" folder="issue-triage" />
+  <GitHubWorkflowTab tab="label-assigner" value="label-assigner" folder="issue-triage" />
+  <GitHubWorkflowTab tab="assignee-selector" value="assignee-selector" folder="issue-triage" />
 </Tabs>
 
-<Tabs items={["pr-webhook", "pr-classifier", "pr-reviewer", "pr-monitor"]}>
-  <GitHubWorkflowTab
-    tab="pr-webhook"
-    value="pr-webhook"
-    folder="pr-classifier"
-  />
-  <GitHubWorkflowTab
-    tab="pr-classifier"
-    value="pr-classifier"
-    folder="pr-classifier"
-  />
-  <GitHubWorkflowTab
-    tab="pr-reviewer"
-    value="pr-reviewer-assigner"
-    folder="pr-classifier"
-  />
-  <GitHubWorkflowTab
-    tab="pr-monitor"
-    value="pr-test-monitor"
-    folder="pr-classifier"
-  />
+<Tabs items={['pr-webhook', 'pr-classifier', 'pr-reviewer', 'pr-monitor']}>
+  <GitHubWorkflowTab tab="pr-webhook" value="pr-webhook" folder="pr-classifier" />
+  <GitHubWorkflowTab tab="pr-classifier" value="pr-classifier" folder="pr-classifier" />
+  <GitHubWorkflowTab tab="pr-reviewer" value="pr-reviewer-assigner" folder="pr-classifier" />
+  <GitHubWorkflowTab tab="pr-monitor" value="pr-test-monitor" folder="pr-classifier" />
 </Tabs>
 
 ## Visual Overview
 
 Here's how the automation flow works:
 
-<div className="my-8">
-  ![Flow: GitHub Issue Workflow](../img/github-issue-workflow.png)
-</div>
-<div className="my-8">
-  ![Flow: GitHub PR Workflow](../img/github-pr-workflow.png)
-</div>
+<div className="my-8">![Flow: GitHub Issue Workflow](../img/github-issue-workflow.png)</div>
+<div className="my-8">![Flow: GitHub PR Workflow](../img/github-pr-workflow.png)</div>
 
 1. **Webhook Reception** → Captures GitHub events
 2. **Issue/PR Classification** → Analyzes content with AI
@@ -174,7 +131,6 @@ npm run dev
 </Steps>
 
 <Callout type="info">
-  For more detailed setup instructions and configuration options, check out the
-  [full
+  For more detailed setup instructions and configuration options, check out the [full
   documentation](https://github.com/MotiaDev/motia-examples/tree/main/examples/github-integration-workflow).
-</Callout>{" "}
+</Callout> 

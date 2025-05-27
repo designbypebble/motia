@@ -3,7 +3,7 @@ title: Finance Agent
 description: A powerful event-driven financial analysis workflow that combines web search, financial data, and AI analysis to provide comprehensive investment insights.
 ---
 
-import { CodeFetcher } from "../../../components/CodeFetcher";
+import { CodeFetcher } from '../../../components/CodeFetcher'
 
 ## Let's build a finance agent that:
 
@@ -24,52 +24,14 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
   <File name="web-search.step.ts" />
 </Folder>
 
-<Tabs
-  items={[
-    "finance-data",
-    "openai-analysis",
-    "query-api",
-    "response-coordinator",
-    "result-api",
-    "save-result",
-    "web-search",
-  ]}
->
-  <CodeFetcher
-    path="examples/finance-agent/steps"
-    tab="finance-data"
-    value="finance-data"
-  />
-  <CodeFetcher
-    path="examples/finance-agent/steps"
-    tab="openai-analysis"
-    value="openai-analysis"
-  />
-  <CodeFetcher
-    path="examples/finance-agent/steps"
-    tab="query-api"
-    value="query-api"
-  />
-  <CodeFetcher
-    path="examples/finance-agent/steps"
-    tab="response-coordinator"
-    value="response-coordinator"
-  />
-  <CodeFetcher
-    path="examples/finance-agent/steps"
-    tab="result-api"
-    value="result-api"
-  />
-  <CodeFetcher
-    path="examples/finance-agent/steps"
-    tab="save-result"
-    value="save-result"
-  />
-  <CodeFetcher
-    path="examples/finance-agent/steps"
-    tab="web-search"
-    value="web-search"
-  />
+<Tabs items={['finance-data', 'openai-analysis', 'query-api', 'response-coordinator', 'result-api', 'save-result', 'web-search']}>
+  <CodeFetcher path="examples/finance-agent/steps" tab="finance-data" value="finance-data" />
+  <CodeFetcher path="examples/finance-agent/steps" tab="openai-analysis" value="openai-analysis" />
+  <CodeFetcher path="examples/finance-agent/steps" tab="query-api" value="query-api" />
+  <CodeFetcher path="examples/finance-agent/steps" tab="response-coordinator" value="response-coordinator" />
+  <CodeFetcher path="examples/finance-agent/steps" tab="result-api" value="result-api" />
+  <CodeFetcher path="examples/finance-agent/steps" tab="save-result" value="save-result" />
+  <CodeFetcher path="examples/finance-agent/steps" tab="web-search" value="web-search" />
 </Tabs>
 
 ## 🚀 Features
@@ -94,14 +56,12 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
 ## 🛠️ Installation
 
 1. Clone the repository:
-
    ```bash
    git clone https://github.com/MotiaDev/motia-examples
    cd examples/finance-agent
    ```
 
 2. Install dependencies:
-
    ```bash
    pnpm install
    # or
@@ -109,13 +69,11 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
    ```
 
 3. Configure environment variables:
-
    ```bash
    cp .env.example .env
    ```
 
    Update `.env` with your API keys:
-
    ```bash
    ALPHA_VANTAGE_API_KEY=your_alpha_vantage_api_key_here
    SERPER_API_KEY=your_serper_api_key_here
@@ -127,6 +85,7 @@ import { CodeFetcher } from "../../../components/CodeFetcher";
 The workflow consists of several specialized steps that work together to provide comprehensive financial analysis:
 
 ![Finance Agent](../img/finance-agent.png)
+
 
 ## 🚦 API Endpoints
 
@@ -142,7 +101,6 @@ Content-Type: application/json
 ```
 
 Response:
-
 ```json
 {
   "message": "Query received and processing started",
@@ -157,7 +115,6 @@ GET /finance-result/:traceId
 ```
 
 Response:
-
 ```json
 {
   "query": "Latest information about AAPL and MSFT",
@@ -175,13 +132,11 @@ Response:
 ## 🏃‍♂️ Running the Application
 
 1. Start the development server:
-
    ```bash
    pnpm dev
    ```
 
 2. Access the Motia Workbench:
-
    ```
    http://localhost:3000
    ```
@@ -192,10 +147,9 @@ Response:
      -H "Content-Type: application/json" \
      -d '{"query": "Latest information about AAPL and MSFT"}'
    ```
-
 ## 🙏 Acknowledgments
 
 - [Motia Framework](https://motia.dev) for the event-driven workflow engine
 - [Alpha Vantage](https://www.alphavantage.co/) for financial data
 - [SerperDev](https://serper.dev/) for web search capabilities
-- [OpenAI](https://platform.openai.com/) for AI analysis
+- [OpenAI](https://platform.openai.com/) for AI analysis 
