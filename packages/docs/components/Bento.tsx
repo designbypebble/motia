@@ -23,7 +23,7 @@ const BentoLayout: React.FC = () => (
         <Image src={bentoSectionTitleIcon} alt="Features" />
       </SectionAppearAnimation>
       <Title className="w-[650px] max-w-full max-lg:text-center max-md:w-[470px]">
-        Power of real code with simplicity of a visual tool
+        Code-First Framework for Backend Infrastructure
       </Title>
       <p className="w-[600px] max-w-full text-[16px] text-white opacity-60 max-lg:text-center">
         <TextAppearBlur delay={0.25}>
