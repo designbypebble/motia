@@ -5,6 +5,8 @@ import './globals.css'
 import { RootProvider } from 'fumadocs-ui/provider'
 import type { WithContext, Organization } from 'schema-dts'
 import { DOMAIN_URL } from '@/utils/constants'
+import { GoogleTagManager } from '@next/third-parties/google'
+import { Analytics } from '@vercel/analytics/react'
 
 const tasaExplorer = localFont({
   src: [
@@ -177,10 +179,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <GoogleTagManager gtmId={GTM_ID} />
+      </head>
       <body
         className={`${geistSans.variable} ${dmMono.variable} ${tasaExplorer.variable} w-screen overflow-x-hidden antialiased`}
       >
-        <RootProvider>{children}</RootProvider>
+        <RootProvider>
+          {children}
+          <Analytics />
+        </RootProvider>
       </body>
     </html>
   )

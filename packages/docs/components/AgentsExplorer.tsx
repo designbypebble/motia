@@ -22,9 +22,9 @@ export default function AgentsExplorer({ initialData }: Props) {
         </Title>
       </div>
       <div className="max-sm:hidden">
-        <Title className="text-center text-white opacity-40">Write AI Workflows Like</Title>
+        <Title className="text-center text-white opacity-40">Write AI Workflows like</Title>
         <Title delay={0.5} className="text-center !font-medium text-white">
-          Like You Write APIs
+          You Write APIs
         </Title>
       </div>
 
