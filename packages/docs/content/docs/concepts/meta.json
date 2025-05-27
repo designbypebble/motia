@@ -2,7 +2,6 @@
   "defaultOpen": true,
   "pages": [
     "steps",
-    "streams",
     "flows-and-visualization",
     "logging-and-debugging",
     "state-management",
